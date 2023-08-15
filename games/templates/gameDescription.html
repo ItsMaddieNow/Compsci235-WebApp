@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Game Description</title>
-        <link rel="stylesheet" href="../static/css/style.css"/>
-    </head>
-    <body>
-        {% include "navbar.html" %}
-        <div class="scrolling">
-            {% include "titlebar.html" %}
-            <div class="content">
-                <h2>{{ game.title }}</h2>
-                <img src="{{ game.image_url }}" alt="game image">
-                <p><span class="headyThing">Release Date:</span> {{ game.release_date }}</p>
-                <p><span class="headyThing">Price:</span> {{ game.price }}</p>
-                <p><span class="headyThing">About:</span> {{ game.description }}</p>
-            </div>
-        </div>
-    </body>
-</html>
+{% extends 'layout.html' %}
+{% block title %}Game Description{% endblock %}
+{% block content %}
+    <h2>{{ game.title }}</h2>
+    <img src="{{ game.image_url }}" alt="game image">
+    <p><span class="headyThing">Release Date:</span> {{ game.release_date }}</p>
+    <p><span class="headyThing">Price:</span> {{ game.price }}</p>
+    <p><span class="headyThing">About:</span> {{ game.description }}</p>
+{% endblock %}

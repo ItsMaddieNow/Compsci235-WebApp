@@ -33,4 +33,26 @@ def create_app():
         # Use Jinja to customize a predefined html page rendering the layout for showing a single game.
         return render_template('gameDescription.html', game=some_game, copyright=f"&copy {team_members[0]}, {team_members[1]} and {team_members[2]} 2023")
 
+    @app.route('/games')
+    def games():
+        team_members = ["Ubayd Abdul Majit", "Bilal Sarwar", "Madeline Whitmore"]
+        random.shuffle(team_members)
+        games_list = [
+            {
+                'name': "Celeste",
+                'price': '4.99',
+                "headerImage": "../static/headers/celeste.jpg"
+            },
+            {
+                'name': "Dredge",
+                'price': '5.99',
+                "headerImage": "../static/headers/dredge.jpg"
+            },
+            {
+                'name': "Towerfall",
+                'price': '5.99',
+                "headerImage": "../static/headers/towerfall.jpg"
+            },
+        ]
+        return render_template('games.html', gamesList=games_list, copyright=f"&copy {team_members[0]}, {team_members[1]} and {team_members[2]} 2023")
     return app
