@@ -1,11 +1,11 @@
 """Initialize Flask app."""
+import random
 
-from flask import Flask, render_template
+from flask import Flask, render_template, g
 
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
 #  stay here!
 from games.domainmodel.model import Game
-
 
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
 #  stay here!
@@ -28,7 +28,9 @@ def create_app():
     @app.route('/')
     def home():
         some_game = create_some_game()
+        team_members = ["Ubayd Abdul Majit", "Bilal Sarwar", "Madeline Whitmore"]
+        random.shuffle(team_members)
         # Use Jinja to customize a predefined html page rendering the layout for showing a single game.
-        return render_template('gameDescription.html', game=some_game)
+        return render_template('gameDescription.html', game=some_game, copyright=f"&copy {team_members[0]}, {team_members[1]} and {team_members[2]} 2023")
 
     return app

@@ -2,5 +2,5 @@
     <a class="page" href="{#{{ url_for('show_layout') }}#}">Home</a>
     <a class="page current" href="{#{{ url_for('show_games') }}#}">Games</a>
     <a class="page">Reviews</a>
-    <a class="bottom">&copy Madeline Whitmore 2023</a>
+    <a class="bottom">{{ copyright|safe }}</a>
 </div>

@@ -66,8 +66,8 @@ body{
     position: fixed;
     left: 0;
     bottom: 24px;
-    width: inherit;
-
+    width: calc(250px - 20px);
+    padding: 10px;
 }
 .headyThing{
     color: #2099c2;
