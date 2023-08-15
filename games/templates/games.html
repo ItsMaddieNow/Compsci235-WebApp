@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Games</title>
+        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/gameslist.css">
+    </head>
+    <body>
+        {% include "navbar.html" %}
+        <div class="scrolling">
+            {% include "titlebar.html" %}
+            <div class="content">
+                <div class="gamesList">
+                    {% for game in gamesList %}
+                        {% include "gamecard.html" %}
+                    {% endfor %}
+                    <!--<figure class="game">
+                        <img class="gameImage" src="../static/dredge header.jpg">
+                        <figcaption>Dredge</figcaption>
+                    </figure>
+                    <figure class="game">
+                        <img class="gameImage" src="../static/towerfall header.jpg">
+                        <figcaption>Towerfall Ascention</figcaption>
+                    </figure>
+                    <figure class="game">
+                        <img class="gameImage" src="../static/celeste header.jpg">
+                        <figcaption>Celeste</figcaption>
+                    </figure>
+                    <figure class="game">
+                        <img class="gameImage" src="../static/earthblade header.jpg">
+                        <figcaption>Earthblade</figcaption>
+                    </figure>-->
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
