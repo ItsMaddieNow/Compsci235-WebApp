@@ -1,12 +1,13 @@
 {% extends 'layout.html' %}
-{% block title %}Game Description{% endblock %}
+{% block title %}Games{% endblock %}
 {% block extraStyles %}<link rel="stylesheet" href="../static/css/gameslist.css">{% endblock %}
 {% block content %}
-    <div class="content">
-        <div class="gamesList">
-            {% for game in gamesList %}
-                {% include "gamecard.html" %}
-            {% endfor %}
-        </div>
+    <div class="gamesList">
+        {% for game in gamesList %}
+            {% include "gamecard.html" %}
+        {% endfor %}
+        {% if gamesList|length==0 %}
+            No Games found at specified page
+        {% endif %}
     </div>
 {% endblock %}

@@ -1,11 +1,14 @@
 """Initialize Flask app."""
+import math
 import random
 
-from flask import Flask, render_template, g
+from flask import Flask, render_template, request
 
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
 #  stay here!
 from games.domainmodel.model import Game
+
+GAMES_PER_PAGE = 12 # 12 is a nice number divisible by 1, 2, 3 and 4, so it works nicely with Flexbox
 
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
 #  stay here!
@@ -35,6 +38,7 @@ def create_app():
 
     @app.route('/games')
     def games():
+        page = request.args.get('page', 1, type=int)
         team_members = ["Ubayd Abdul Majit", "Bilal Sarwar", "Madeline Whitmore"]
         random.shuffle(team_members)
         games_list = [
@@ -54,5 +58,7 @@ def create_app():
                 "headerImage": "../static/headers/towerfall.jpg"
             },
         ]
-        return render_template('games.html', gamesList=games_list, copyright=f"&copy {team_members[0]}, {team_members[1]} and {team_members[2]} 2023")
+        pages = math.ceil(len(games_list)/GAMES_PER_PAGE)
+        page_selection = games_list[max((page-1)*GAMES_PER_PAGE, 0):min(page*GAMES_PER_PAGE, len(games_list))]
+        return render_template('games.html', gamesList=page_selection, copyright=f"&copy {team_members[0]}, {team_members[1]} and {team_members[2]} 2023")
     return app
