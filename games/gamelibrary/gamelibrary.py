@@ -34,5 +34,5 @@ def games():
     ]
     pages = math.ceil(len(games_list) / GAMES_PER_PAGE)
     page_selection = services.get_games(max((page - 1) * GAMES_PER_PAGE, 0), min(page * GAMES_PER_PAGE, len(games_list)))
-    return render_template('games.html', gamesList=page_selection,
+    return render_template('games.html', gamesList=page_selection, current_page=page, total_pages=pages,
                            copyright=f"&copy {team_members[0]}, {team_members[1]} and {team_members[2]} 2023")
