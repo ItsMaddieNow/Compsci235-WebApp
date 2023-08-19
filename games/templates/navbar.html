@@ -1,4 +1,6 @@
 <div class="sidebar">
+    <img src="{{ url_for('static', filename='icon.svg')}}", alt="controllerIcon", width="120", height="120" />
+    <h2>Game Library</h2>
     <a class="page" href="{{ url_for('home_bp.home') }}">Home</a>
     <a class="page current" href="{{ url_for('library_bp.games') }}">Games</a>
     <a class="page">Reviews</a>
