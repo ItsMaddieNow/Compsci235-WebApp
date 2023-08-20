@@ -7,6 +7,7 @@ home_blueprint = Blueprint(
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
 #  stay here!
 from games.domainmodel.model import Game
+from games.domainmodel.model import Genre
 
 
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
@@ -18,6 +19,8 @@ def create_some_game():
     some_game.description = "The new action-thriller from the award-winning team at Infinity Ward, the creators of " \
                             "the Call of Duty® series, delivers the most intense and cinematic action experience ever. "
     some_game.image_url = "https://cdn.akamai.steamstatic.com/steam/apps/7940/header.jpg?t=1646762118"
+    some_game.add_genre(Genre("Fantasy"))
+    some_game.add_genre(Genre("I know nothing about this game"))
     return some_game
 
 
