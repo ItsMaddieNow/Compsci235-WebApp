@@ -14,7 +14,7 @@ def create_app():
         from .gamelibrary import gamelibrary
         app.register_blueprint(gamelibrary.library_blueprint)
 
-        from .home import home
-        app.register_blueprint(home.home_blueprint)
+        from .description import description
+        app.register_blueprint(description.description_blueprint)
 
     return app

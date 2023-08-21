@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template
 import random
 
-home_blueprint = Blueprint(
-    'home_bp', __name__
+description_blueprint = Blueprint(
+    'description_bp', __name__
 )
 # TODO: Access to the games should be implemented via the repository pattern and using blueprints, so this can not
 #  stay here!
@@ -24,8 +24,8 @@ def create_some_game():
     return some_game
 
 
-@home_blueprint.route("/")
-def home():
+@description_blueprint.route("/description/<game>")
+def description(game):
     some_game = create_some_game()
     team_members = ["Ubayd Abdul Majit", "Bilal Sarwar", "Madeline Whitmore"]
     random.shuffle(team_members)
