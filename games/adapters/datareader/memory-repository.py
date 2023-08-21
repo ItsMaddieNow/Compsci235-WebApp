@@ -1,7 +1,7 @@
 from typing import List
 from games.domainmodel.model import Publisher, Genre, Game, User, Review, Wishlist
-from games.datareader.repository import AbstractRepository, RepositoryException
-from games.datareader.csvdatareader import GameFileCSVReader
+from .repository import AbstractRepository, RepositoryException
+from .csvdatareader import GameFileCSVReader
 
 
 class MemoryRepository(AbstractRepository):
@@ -77,7 +77,7 @@ class MemoryRepository(AbstractRepository):
             return True
         return False
 
-    def get_review(self, review_id: int) -> Review:
+    def get_review(self, review_id: int) -> Review | None:
         if 0 <= review_id < len(self.__reviews):
             return self.__reviews[review_id]
         return None

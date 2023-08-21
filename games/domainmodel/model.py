@@ -382,3 +382,7 @@ class Wishlist:
         else:
             self.__current += 1
             return self.__list_of_games[self.__current - 1]
+
+    @property
+    def user(self)->User:
+        return self.__user
