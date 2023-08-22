@@ -2,9 +2,15 @@
 {% block title %}Games{% endblock %}
 {% block extraStyles %}
     <link rel="stylesheet" href="../static/css/gameslist.css">
-    <link rel="stylesheet" href="../static/css/pagination.css">
+    <link rel="stylesheet" href="../static/css/selector.css">
 {% endblock %}
 {% block content %}
+    <div class="selector">
+        <a href="{{ url_for('library_bp.games', sortBy="Newest", page=current_page) }}">Newest</a>
+        <a href="{{ url_for('library_bp.games', sortBy="Oldest", page=current_page) }}">Oldest</a>
+    </div>
+    {% include "pageselector.html" %}
+
     <div class="gamesList">
         {% for game in gamesList %}
             {% include "gamecard.html" %}
@@ -14,21 +20,7 @@
         {% endif %}
     </div>
 
-    <div class="pagination">
-        {% if current_page > 1 %}
-            <a href="{{ url_for('library_bp.games', page=current_page-1) }}">Previous</a>
-        {% else %}
-            <span title="No previous" class="inactive">Previous</span>
-        {% endif %}
-
-        <strong>{{ current_page }}</strong>
-
-        {% if current_page < total_pages %}
-            <a href="{{ url_for('library_bp.games', page=current_page+1) }}">Next</a>
-        {% else %}
-            <span title="No next" class="inactive">Next</span>
-        {% endif %}
-    </div>
+    {% include "pageselector.html" %}
 
 
 {% endblock %}

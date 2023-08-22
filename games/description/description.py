@@ -24,8 +24,8 @@ def create_some_game():
     return some_game
 
 
-@description_blueprint.route("/description/<game>")
-def description(game):
+@description_blueprint.route("/description/<game_id>")
+def description(game_id):
     some_game = create_some_game()
     team_members = ["Ubayd Abdul Majit", "Bilal Sarwar", "Madeline Whitmore"]
     random.shuffle(team_members)

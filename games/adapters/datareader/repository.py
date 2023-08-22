@@ -53,6 +53,18 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def search_games_by_title(self, title: str) -> List[Game]:
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def game_amount(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_games_by_key(self, start_index, end_index, key):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def add_user(self, user: User):
         """ Adds a User to the repository. """
         raise NotImplementedError

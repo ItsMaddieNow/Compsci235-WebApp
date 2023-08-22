@@ -192,6 +192,9 @@ class Game:
             print(f"Could not find {genre} in list of genres.")
             pass
 
+    def date_sort_key(self):
+        return datetime.strptime(self.release_date, "%b %d, %Y")
+
     def __repr__(self):
         return f"<Game {self.__game_id}, {self.__game_title}>"
 
@@ -384,5 +387,5 @@ class Wishlist:
             return self.__list_of_games[self.__current - 1]
 
     @property
-    def user(self)->User:
+    def user(self) -> User:
         return self.__user

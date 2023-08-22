@@ -2,6 +2,7 @@ from typing import List
 from games.domainmodel.model import Publisher, Genre, Game, User, Review, Wishlist
 from .repository import AbstractRepository, RepositoryException
 from .csvdatareader import GameFileCSVReader
+from datetime import datetime
 
 
 class MemoryRepository(AbstractRepository):
@@ -60,6 +61,20 @@ class MemoryRepository(AbstractRepository):
     def search_games_by_title(self, title: str) -> List[Game]:
         return [game for game in self.__games.values() if title.lower() in game.title.lower()]
 
+    def game_amount(self):
+        return len(self.__games)
+
+    def get_games_by_key(self, start_index, end_index, key_str):
+        key = None
+        reverse = False
+        if key_str == "Newest":
+            key = Game.date_sort_key
+        elif key_str == "Oldest":
+            key = Game.date_sort_key
+            reverse = True
+        games = sorted(self.__games.values(), key=key, reverse=reverse)
+        return games[start_index:end_index]
+
     # User Methods
     def add_user(self, user: User) -> bool:
         if user.username not in self.__users:
@@ -94,7 +109,7 @@ class MemoryRepository(AbstractRepository):
 
     def remove_game_from_wishlist(self, user: User, game: Game) -> bool:
         wishlist = self.get_wishlist(user)
-        if wishlist and game in wishlist.games:
-            wishlist.games.remove(game)
+        if wishlist and game in wishlist.list_of_games():
+            wishlist.list_of_games().remove(game)
             return True
         return False

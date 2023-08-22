@@ -1,0 +1,21 @@
+<div class="selector">
+    {% if current_page != 1 %}
+        <a href="{{ url_for(request.endpoint, page=1, sortBy=sort_by) }}">First</a>
+    {% endif %}
+    {% if current_page > 1 %}
+        <a href="{{ url_for('library_bp.games', page=current_page-1, sortBy=sort_by) }}">Previous</a>
+    {% else %}
+        <span title="No previous" class="inactive">Previous</span>
+    {% endif %}
+
+    <strong>{{ current_page }}</strong>
+
+    {% if current_page < total_pages %}
+        <a href="{{ url_for('library_bp.games', page=current_page+ 1, sortBy=sort_by) }}">Next</a>
+    {% else %}
+        <span title="No next" class="inactive">Next</span>
+    {% endif %}
+    {% if current_page != total_pages %}
+        <a href="{{ url_for('library_bp.games', page=total_pages, sortBy=sort_by) }}">Last</a>
+    {% endif %}
+</div>

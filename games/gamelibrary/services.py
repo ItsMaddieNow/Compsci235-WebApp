@@ -1,21 +1,10 @@
-games_list = [
-    {
-        'name': "Celeste",
-        'price': '4.99',
-        "headerImage": "../static/headers/celeste.jpg"
-    },
-    {
-        'name': "Dredge",
-        'price': '5.99',
-        "headerImage": "../static/headers/dredge.jpg"
-    },
-    {
-        'name': "Towerfall",
-        'price': '5.99',
-        "headerImage": "../static/headers/towerfall.jpg"
-    },
-]
+from games.domainmodel.model import Game
+from games.adapters.datareader.repository import AbstractRepository
 
 
-def get_games(start, end):
-    return games_list[start:end]
+def get_games(page, per_page, key, repo: AbstractRepository):
+    return repo.get_games_by_key((page-1)*per_page, page*per_page, key)
+
+
+def get_game_amount(repo: AbstractRepository):
+    return repo.game_amount()
