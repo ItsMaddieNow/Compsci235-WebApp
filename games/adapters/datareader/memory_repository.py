@@ -83,9 +83,9 @@ class MemoryRepository(AbstractRepository):
         reverse = False
         if key_str == "Newest":
             key = Game.date_sort_key
+            reverse = True
         elif key_str == "Oldest":
             key = Game.date_sort_key
-            reverse = True
         # Sorting this list every time a request is made is probably a bad idea but like ¯\_(ツ)_/¯
         games = sorted(self.__games.values(), key=key, reverse=reverse)
         return games[start_index:end_index]
