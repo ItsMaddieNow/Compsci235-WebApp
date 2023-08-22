@@ -14,6 +14,7 @@ def create_app():
     app = Flask(__name__)
 
     repo.repo_instance = MemoryRepository()
+    repo.repo_instance.populate_data_from_file("./games/adapters/data/games.csv")
 
     with app.app_context():
         from .gamelibrary import gamelibrary
