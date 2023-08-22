@@ -12,6 +12,7 @@
     border-radius: 5px;
     box-shadow: 5px 5px 12px 0px #000;
     background-color: oklch(87.7% 0.069 227);
+    color: black;
 }
 .game figcaption{
     text-align: center;
@@ -23,4 +24,7 @@
     width:inherit;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+}
+.gameLink{
+    text-decoration: none;
 }
