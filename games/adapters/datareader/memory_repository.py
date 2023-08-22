@@ -2,7 +2,6 @@ from typing import List
 from games.domainmodel.model import Publisher, Genre, Game, User, Review, Wishlist
 from .repository import AbstractRepository, RepositoryException
 from .csvdatareader import GameFileCSVReader
-from datetime import datetime
 
 
 def get_game_title(game):
@@ -11,6 +10,10 @@ def get_game_title(game):
 
 def get_game_description(game):
     return game.description
+
+
+def get_game_publisher(game):
+    return game.publisher.publisher_name
 
 
 class MemoryRepository(AbstractRepository):
@@ -70,6 +73,8 @@ class MemoryRepository(AbstractRepository):
         key = get_game_title
         if key_str == "description":
             key = get_game_description
+        elif key_str == "publisher":
+            key = get_game_publisher
         return [game for game in self.__games.values() if isinstance(key(game), str) and
                 term.lower() in key(game).lower()]
 
