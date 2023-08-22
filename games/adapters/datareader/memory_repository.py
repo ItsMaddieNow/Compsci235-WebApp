@@ -5,6 +5,14 @@ from .csvdatareader import GameFileCSVReader
 from datetime import datetime
 
 
+def get_game_title(game):
+    return game.title
+
+
+def get_game_description(game):
+    return game.description
+
+
 class MemoryRepository(AbstractRepository):
 
     def __init__(self, filename: str):
@@ -58,8 +66,12 @@ class MemoryRepository(AbstractRepository):
     def get_game(self, game_id: int) -> Game:
         return self.__games.get(game_id)
 
-    def search_games_by_title(self, title: str) -> List[Game]:
-        return [game for game in self.__games.values() if title.lower() in game.title.lower()]
+    def search_games_by_key(self, term: str, key_str: str) -> List[Game]:
+        key = get_game_title
+        if key_str == "description":
+            key = get_game_description
+        return [game for game in self.__games.values() if isinstance(key(game), str) and
+                term.lower() in key(game).lower()]
 
     def game_amount(self):
         return len(self.__games)
@@ -72,6 +84,7 @@ class MemoryRepository(AbstractRepository):
         elif key_str == "Oldest":
             key = Game.date_sort_key
             reverse = True
+        # Sorting this list every time a request is made is probably a bad idea but like ¯\_(ツ)_/¯
         games = sorted(self.__games.values(), key=key, reverse=reverse)
         return games[start_index:end_index]
 

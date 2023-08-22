@@ -53,7 +53,7 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def search_games_by_title(self, title: str) -> List[Game]:
+    def search_games_by_key(self, term: str, key) -> List[Game]:
         raise NotImplementedError
 
     @abc.abstractmethod

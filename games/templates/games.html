@@ -11,14 +11,7 @@
     </div>
     {% include "pageselector.html" %}
 
-    <div class="gamesList">
-        {% for game in gamesList %}
-            {% include "gamecard.html" %}
-        {% endfor %}
-        {% if gamesList|length==0 %}
-            No Games found at specified page
-        {% endif %}
-    </div>
+    {% include "gamesList.html" %}
 
     {% include "pageselector.html" %}
 

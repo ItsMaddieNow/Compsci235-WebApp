@@ -22,4 +22,7 @@ def create_app():
         from .description import description
         app.register_blueprint(description.description_blueprint)
 
+        from .search import search
+        app.register_blueprint(search.search_blueprint)
+
     return app

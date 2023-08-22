@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block title %}Search Results{% endblock %}
+{% block extraStyles %}
+    <link rel="stylesheet" href="../static/css/gameslist.css">
+{% endblock %}
+{% block content %}
+
+    {% include "search/searchBar.html" %}
+    {% include "gamesList.html" %}
+{% endblock %}
