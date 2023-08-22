@@ -18,7 +18,7 @@ def get_game_publisher(game):
 
 class MemoryRepository(AbstractRepository):
 
-    def __init__(self, filename: str):
+    def __init__(self):
         self.__publishers = {}
         self.__genres = {}
         self.__games = {}
@@ -26,17 +26,14 @@ class MemoryRepository(AbstractRepository):
         self.__reviews = []
         self.__wishlists = {}
 
-        # initialise, read, populate
-        self.__reader = GameFileCSVReader(filename)
-        self.__reader.read_csv_file()
-        self.__populate_data_from_reader()
-
-    def __populate_data_from_reader(self):
-        for game in self.__reader.dataset_of_games:
+    def populate_data_from_file(self, file_path):
+        reader = GameFileCSVReader(file_path)
+        reader.read_csv_file()
+        for game in reader.dataset_of_games:
             self.__games[game.game_id] = game
-        for genre in self.__reader.dataset_of_genres:
+        for genre in reader.dataset_of_genres:
             self.__genres[genre.genre_name] = genre
-        for publisher in self.__reader.dataset_of_publishers:
+        for publisher in reader.dataset_of_publishers:
             self.__publishers[publisher.publisher_name] = publisher
 
     # Publisher Methods
@@ -131,3 +128,8 @@ class MemoryRepository(AbstractRepository):
             wishlist.list_of_games().remove(game)
             return True
         return False
+
+
+def populate(file_path, repo: MemoryRepository):
+    # initialise, read, populate
+    repo.populate_data_from_file(file_path)

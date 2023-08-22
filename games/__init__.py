@@ -13,7 +13,7 @@ def create_app():
     # Create the Flask app object.
     app = Flask(__name__)
 
-    repo.repo_instance = MemoryRepository("./games/adapters/data/games.csv")
+    repo.repo_instance = MemoryRepository()
 
     with app.app_context():
         from .gamelibrary import gamelibrary
