@@ -1,4 +1,6 @@
-<figure class="game">
-    <img class="gameImage" src="{{ game.image_url }}">
-    <figcaption>{{ game.title }}</figcaption>
-</figure>
+<a href="{{ url_for('description_bp.description', game_id=game.game_id) }}">
+    <figure class="game" >
+        <img class="gameImage" src="{{ game.image_url }}">
+        <figcaption>{{ game.title }}</figcaption>
+    </figure>
+</a>
