@@ -1,6 +1,7 @@
 import pytest
 
-from games.domainmodel.model import Game
+from games.adapters.datareader.repository import RepositoryException
+from games.domainmodel.model import Game, User, Review, Wishlist
 
 
 def test_repo_get_game(in_memory_repo):
@@ -49,3 +50,46 @@ def test_repo_get_genre_not_exist(in_memory_repo):
     # Check None is returned when Non-Existent Genre is Requested
     genre = in_memory_repo.get_genre("NFSW")
     assert genre is None
+
+
+def test_add_get_user(in_memory_repo):
+    in_memory_repo.add_user(User("DJ_Hyperfresh", "6Zqzvso%hPn25$"))
+    user = in_memory_repo.get_user("DJ_Hyperfresh")
+    assert user == User("DJ_Hyperfresh", "6Zqzvso%hPn25$")
+
+
+def test_no_duplicate_users(in_memory_repo):
+    # Pearlina Wedding DLC
+    in_memory_repo.add_user(User("DJ_Hyperfresh", "6Zqzvso%hPn25$"))
+    in_memory_repo.add_user(User("MC.Princess", "6Zqzvso%hPn25$"))
+    with pytest.raises(RepositoryException):
+        in_memory_repo.add_user(User("DJ_Hyperfresh", "6Zqzvso%hPn25$"))
+
+
+def test_get_publisher(in_memory_repo):
+    publisher = in_memory_repo.get_publisher("Pablo Picazo")
+    assert str(publisher) == "<Publisher Pablo Picazo>"
+
+
+def test_get_add_get_review(in_memory_repo):
+    in_memory_repo.add_review(Review(
+        User("DJ_Hyperfresh", "6Zqzvso%hPn25$"),
+        Game(1, "Splatoon 3"),
+        5,
+        "Gay <3"
+    ))
+    review = in_memory_repo.get_review(0)
+    assert str(review) == "Review(User: <User dj_hyperfresh>, Game: <Game 1, Splatoon 3>, Rating: 5, Comment: Gay <3)"
+
+
+def test_get_add_wishlist(in_memory_repo):
+    in_memory_repo.add_wishlist(Wishlist(User("DJ_Hyperfresh", "6Zqzvso%hPn25$")))
+    assert (in_memory_repo.get_wishlist(User("DJ_Hyperfresh", "6Zqzvso%hPn25$")).user ==
+            User("DJ_Hyperfresh", "6Zqzvso%hPn25$"))
+
+
+def test_add_duplicates_wishlist(in_memory_repo):
+    in_memory_repo.add_wishlist(Wishlist(User("DJ_Hyperfresh", "6Zqzvso%hPn25$")))
+    with pytest.raises(RepositoryException):
+        in_memory_repo.add_wishlist(Wishlist(User("DJ_Hyperfresh", "6Zqzvso%hPn25$")))
+
