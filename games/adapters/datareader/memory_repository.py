@@ -112,9 +112,9 @@ class MemoryRepository(AbstractRepository):
             return True
         return False
 
-    def get_review(self, review_id: int) -> Review | None:
-        if 0 <= review_id < len(self.__reviews):
-            return self.__reviews[review_id]
+    def get_review(self, review_index: int) -> Review | None:
+        if 0 <= review_index < len(self.__reviews):
+            return self.__reviews[review_index]
         return None
 
     # Wishlist Methods
