@@ -32,11 +32,8 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_genre(self, genre_name: str) -> Genre:
-        """ Returns the Genre with the given genre_name from the repository.
-
-        If there is no Genre with the given genre_name, this method returns None.
-        """
+    def get_genres(self, genre_name: str) -> List[Genre]:
+        """ Returns all existing Genres from the repository. """
         raise NotImplementedError
 
     @abc.abstractmethod
