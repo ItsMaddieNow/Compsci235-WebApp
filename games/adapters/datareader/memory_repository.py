@@ -53,9 +53,8 @@ class MemoryRepository(AbstractRepository):
             return True
         raise RepositoryException(f'Genre with name {genre.genre_name} already exists.')
 
-
-    def get_genres(self):
-        return self.__genres
+    def get_genre(self, genre_name: str) -> Genre:
+        return self.__genres.get(genre_name)
 
     # Game Methods
     def add_game(self, game: Game) -> bool:
