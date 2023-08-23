@@ -230,7 +230,7 @@ class User:
         if not isinstance(username, str) or username.strip() == "":
             raise ValueError('Username cannot be empty or non-string!')
         else:
-            self.__username = username.lower().strip()
+            self.__username = username.strip()
 
         if isinstance(password, str) and len(password) >= 7:
             self.__password = password
@@ -242,6 +242,12 @@ class User:
 
     @property
     def username(self):
+        return self.__username.lower()
+
+    @property
+    def username_for_ui(self):
+        # Because people should be able to use caps in their username for camelcase but people but shouldn't have to
+        # remember capitalization when looking a user up or logging in
         return self.__username
 
     @property
