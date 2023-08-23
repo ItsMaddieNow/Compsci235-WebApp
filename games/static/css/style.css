@@ -105,9 +105,18 @@ body{
 .description img{
     float: right;
 }
-.genre{
+.tag{
     background-color: dodgerblue;
     color: white;
     border-radius: 999px;
     padding: 0.5em;
+}
+.tags{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 5px;
+    row-gap: 5px;
 }

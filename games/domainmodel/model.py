@@ -96,6 +96,9 @@ class Game:
         self.__genres: list = []
         self.__reviews: list = []
         self.__publisher = None
+        self.__supports_linux = False
+        self.__supports_windows = False
+        self.__supports_mac = False
 
     @property
     def publisher(self) -> Publisher:
@@ -190,6 +193,30 @@ class Game:
     @property
     def genres(self) -> list:
         return self.__genres
+
+    @property
+    def supports_linux(self):
+        return self.__supports_linux
+
+    @supports_linux.setter
+    def supports_linux(self, supports_linux):
+        self.__supports_linux = supports_linux
+
+    @property
+    def supports_windows(self):
+        return self.__supports_windows
+
+    @supports_windows.setter
+    def supports_windows(self, supports_windows):
+        self.__supports_windows = supports_windows
+
+    @property
+    def supports_mac(self):
+        return self.__supports_linux
+
+    @supports_mac.setter
+    def supports_mac(self, supports_mac):
+        self.__supports_mac = supports_mac
 
     def add_genre(self, genre: Genre):
         if not isinstance(genre, Genre) or genre in self.__genres:
