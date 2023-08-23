@@ -103,7 +103,7 @@ class MemoryRepository(AbstractRepository):
         raise RepositoryException(f'User with username {user.username} already exists.')
 
     def get_user(self, username: str) -> User:
-        return self.__users.get(username)
+        return self.__users[username.strip().lower()]
 
     # Review Methods
     def add_review(self, review: Review) -> bool:
