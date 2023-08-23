@@ -20,7 +20,7 @@ class MemoryRepository(AbstractRepository):
 
     def __init__(self):
         self.__publishers = {}
-        self.__genres = {}
+        self.__genres = set()
         self.__games = {}
         self.__users = {}
         self.__reviews = []
@@ -48,14 +48,13 @@ class MemoryRepository(AbstractRepository):
 
     # Genre Methods
     def add_genre(self, genre: Genre) -> bool:
-        if genre.genre_name not in self.__genres:
-            self.__genres[genre.genre_name] = genre
+        if genre not in self.__genres:
+            self.__genres.add(genre)
             return True
         raise RepositoryException(f'Genre with name {genre.genre_name} already exists.')
 
-
     def get_genres(self):
-        return self.__genres
+        return list(self.__genres)
 
     # Game Methods
     def add_game(self, game: Game) -> bool:
