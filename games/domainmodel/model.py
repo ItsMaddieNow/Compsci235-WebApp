@@ -283,20 +283,20 @@ class User:
         self.__favourite_games.remove(game)
 
     def __repr__(self):
-        return f"<User {self.__username}>"
+        return f"<User {self.username}>"
 
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        return self.__username == other.username
+        return self.username == other.username
 
     def __hash__(self):
-        return hash(self.__username)
+        return hash(self.username)
 
     def __lt__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        return self.__username < other.username
+        return self.username < other.username
 
 
 class Review:
