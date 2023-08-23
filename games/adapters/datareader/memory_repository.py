@@ -29,10 +29,12 @@ class MemoryRepository(AbstractRepository):
     def populate_data_from_file(self, file_path):
         reader = GameFileCSVReader(file_path)
         reader.read_csv_file()
-        for game in reader.dataset_of_games:
-            self.__games[game.game_id] = game
         for genre in reader.dataset_of_genres:
             self.__genres[genre.genre_name] = genre
+        for game in reader.dataset_of_games:
+            self.__games[game.game_id] = game
+            for genre in game.genres:
+                self.__genres[genre.genre_name].add_game(game)
         for publisher in reader.dataset_of_publishers:
             self.__publishers[publisher.publisher_name] = publisher
 
@@ -55,6 +57,9 @@ class MemoryRepository(AbstractRepository):
 
     def get_genre(self, genre_name: str) -> Genre:
         return self.__genres.get(genre_name)
+
+    def get_genres(self) -> List[Genre]:
+        return list(self.__genres.values())
 
     # Game Methods
     def add_game(self, game: Game) -> bool:

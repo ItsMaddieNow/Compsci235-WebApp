@@ -36,16 +36,29 @@ class Publisher:
         return hash(self.__publisher_name)
 
 
+
 class Genre:
     def __init__(self, genre_name: str):
         if genre_name == "" or type(genre_name) is not str:
             self.__genre_name = None
         else:
             self.__genre_name = genre_name.strip()
+        self.__games = []
 
     @property
     def genre_name(self) -> str:
         return self.__genre_name
+
+    def add_game(self, game):
+        self.__games.append(game)
+
+    @property
+    def games(self):
+        return self.__games
+
+    @property
+    def number_of_games(self):
+        return len(self.__games)
 
     def __repr__(self) -> str:
         return f'<Genre {self.__genre_name}>'
