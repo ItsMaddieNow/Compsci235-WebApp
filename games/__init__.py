@@ -17,6 +17,9 @@ def create_app():
     repo.repo_instance.populate_data_from_file("./games/adapters/data/games.csv")
 
     with app.app_context():
+        from .home import home
+        app.register_blueprint(home.home_blueprint)
+
         from .gamelibrary import gamelibrary
         app.register_blueprint(gamelibrary.library_blueprint)
 
