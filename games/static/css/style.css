@@ -120,3 +120,44 @@ body{
     column-gap: 5px;
     row-gap: 5px;
 }
+
+.searchCenter{
+    display: flex;
+    justify-content: center;
+}
+
+.searchbar{
+    border-radius: 1000px;
+    border-color: #007BFF;
+    border-width: 2px;
+    border-style: ridge;
+}
+
+.searchbar input[type="text"]{
+    border: none;
+    width: fit-content;
+    padding: 1px 6px;
+    outline: none;
+}
+
+.searchbar select{
+    border: none;
+    background: transparent;
+}
+
+.searchbar input[type="submit"]{
+    border: none;
+    background: transparent;
+}
+
+.searchbar *{
+    border-radius: inherit;
+    float: left;
+    height: 24px;
+}
+
+
+
+.searchbar input[type="text"]:active{
+    border: none;
+}
