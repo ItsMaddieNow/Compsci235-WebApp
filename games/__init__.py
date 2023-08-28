@@ -7,7 +7,7 @@ import games.adapters.datareader.repository as repo
 from games.adapters.datareader.memory_repository import MemoryRepository
 
 
-def create_app():
+def create_app(test_config=None):
     """Construct the core application."""
 
     # Create the Flask app object.

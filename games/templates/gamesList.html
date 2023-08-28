@@ -3,6 +3,6 @@
         {% include "gamecard.html" %}
     {% endfor %}
     {% if gamesList|length==0 %}
-        No Games found at specified page
+        {{ notFoundMessage }}
     {% endif %}
 </div>

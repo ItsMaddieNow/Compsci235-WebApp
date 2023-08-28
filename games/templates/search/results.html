@@ -6,5 +6,6 @@
 {% block content %}
 
     {% include "search/searchBar.html" %}
+    {% set notFoundMessage = 'No Games Found With The Specified Criteria' %}
     {% include "gamesList.html" %}
 {% endblock %}
