@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 import games.adapters.datareader
 import games.adapters.datareader.repository as repo
 from games.adapters.datareader.memory_repository import MemoryRepository
+from games.utilities.copyright import copyright_rand
 
 
 def create_app(test_config=None):
@@ -28,5 +29,7 @@ def create_app(test_config=None):
 
         from .search import search
         app.register_blueprint(search.search_blueprint)
+
+    app.jinja_env.globals.update(copyright_rand=copyright_rand)
 
     return app

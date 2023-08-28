@@ -6,5 +6,5 @@
     <a class="page" href="{{ url_for('home_bp.home')}}">Home</a>
     <a class="page current" href="{{ url_for('library_bp.games') }}">Games</a>
     <a class="page" href="{{ url_for('search_bp.search') }}">Search</a>
-    <a class="bottom">{{ copyright|safe }}</a>
+    <a class="bottom">{{ copyright_rand()|safe }}</a>
 </div>

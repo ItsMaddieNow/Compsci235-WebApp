@@ -2,7 +2,6 @@ from flask import Blueprint, request, render_template
 import math
 import games.gamelibrary.services as services
 import games.adapters.datareader.repository as repo
-from games.utilities.copyright import copyright_rand
 REPO = repo.repo_instance
 GAMES_PER_PAGE = 12  # 12 is a nice number divisible by 1, 2, 3 and 4, so it works nicely with Flexbox
 
@@ -22,5 +21,4 @@ def games():
                            current_page=page,
                            total_pages=pages,
                            sort_by=sort_by,
-                           copyright=copyright_rand()
                            )
