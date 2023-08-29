@@ -241,3 +241,35 @@ body{
     border: 1px solid dodgerblue;
     font-family: 'Rubik', sans-serif;
 }
+
+.para h2{
+    margin-top: 50px;
+    text-align:left;
+    font-size:36px;
+    color:dodgerblue;
+}
+
+.para p{
+    font-size:18px;
+}
+
+.para2 h2{
+    text-align:left;
+    font-size:36px;
+    color:dodgerblue;
+}
+
+.para2 p{
+    font-size:18px;
+    text-align:left;
+}
+
+.git h2{
+    text-align: left;
+    font-size: 36px;
+    color:dodgerblue;
+}
+
+.git p {
+    font-size: 18px;
+}
