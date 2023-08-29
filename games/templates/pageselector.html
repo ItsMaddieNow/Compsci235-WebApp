@@ -1,6 +1,6 @@
 <div class="selector">
     <!-- Always show the '<<' link to go to the first page -->
-    <a href="{{ url_for(request.endpoint, page=1, sortBy=sort_by) }}" title="Go to the first page"><<</a>
+    <a href="{{ url_for(request.endpoint, page=1, sortBy=sort_by, genre_name=genre_name) }}" title="Go to the first page"><<</a>
 
     {% if current_page > 1 %}
         <a href="{{ url_for('library_bp.games', page=current_page-1, sortBy=sort_by) }}" title="Go to the previous page"><</a>
