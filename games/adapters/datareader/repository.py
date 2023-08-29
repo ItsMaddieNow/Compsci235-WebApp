@@ -45,6 +45,14 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_games_by_genre(self, start_index, end_index, genre_name):
+        """ Returns a list of all Games by a specific Genre"""
+        raise NotImplementedError
+
+    def get_game_amount_by_genre(self, genre_name):
+        """Returns length of games of a specified Genre"""
+        raise  NotImplementedError
+    @abc.abstractmethod
     def add_game(self, game: Game):
         """ Adds a Game to the repository. """
         raise NotImplementedError

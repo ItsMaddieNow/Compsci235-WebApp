@@ -61,6 +61,16 @@ class MemoryRepository(AbstractRepository):
     def get_genres(self) -> List[Genre]:
         return list(self.__genres.values())
 
+    def get_games_by_genre(self, start_index, end_index, genre_name):
+        games = [game for game in self.__games.values() if genre_name in [genre.genre_name for genre in game.genres]]
+        return games[start_index:end_index]
+
+    def get_game_amount_by_genre(self, genre_name):
+        # get the number of games of a specific genre
+        all_games_of_genre = [game for game in self.__games.values() if
+                              genre_name in [genre.genre_name for genre in game.genres]]
+        return len(all_games_of_genre)
+
     # Game Methods
     def add_game(self, game: Game) -> bool:
         if game.game_id not in self.__games:
