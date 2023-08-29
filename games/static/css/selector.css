@@ -14,18 +14,21 @@
     padding: 8px 12px;
     border: 2px solid #136ac7;
     text-decoration: none;
-    color: #07509f;
+    color: dodgerblue;
     border-radius: 50px;
     transition: all 0.3s;
 }
 
 .selector a:hover {
-    background-color: #347ece;
+    background-color: dodgerblue;
     color: #fff;
 }
 
 .selector strong {
+    /*
     background-color: #007BFF;
+     */
+    background-color: dodgerblue;
     color: #fff;
     cursor: default;
 }
