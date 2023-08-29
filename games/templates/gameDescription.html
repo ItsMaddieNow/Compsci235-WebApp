@@ -8,11 +8,14 @@
         <p><span class="headyThing">Publisher:</span> {{ game.publisher.publisher_name }}</p>
         <p><span class="headyThing">Release Date:</span> {{ game.release_date }}</p>
         <div class="tags" style="width: calc(800px - 460px);">
-            <div class="headyThing">Genres:</div>
+        <div class="headyThing">Genres:</div>
             {% for genre in game.genres %}
-                <div class="tag"> {{ genre.genre_name }}</div>
+                <a href="{{ url_for('library_bp.games_by_genre', genre_name=genre.genre_name, page=1) }}">
+                    <div class="tag"> {{ genre.genre_name }}</div>
+                </a>
             {% endfor %}
         </div>
+
         <p><span class="headyThing">About:</span> {{ game.description }}</p>
         <div class="tags">
             <div class="headyThing">Platforms:</div>
