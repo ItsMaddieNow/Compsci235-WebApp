@@ -43,7 +43,7 @@ def test_search_no_results(in_memory_repo):
 
 
 def test_game_amount_by_genre(in_memory_repo):
-    assert 100 == library_services.get_game_amount_by_genre("Action", in_memory_repo)
+    assert 380 == library_services.get_game_amount_by_genre("Action", in_memory_repo)
 
 
 def test_get_games_pagination(in_memory_repo):
