@@ -28,9 +28,26 @@ def test_search_by_title(in_memory_repo):
 
 def test_search_by_description(in_memory_repo):
     games = search_services.search_games("super meat boy", "description", in_memory_repo)
-    assert str(games) == "[<Game 1672700, Tiny Hunter>, <Game 266330, Ethan: Meteor Hunter>, <Game 40800, Super Meat Boy>]"
+    assert str(
+        games) == "[<Game 1672700, Tiny Hunter>, <Game 266330, Ethan: Meteor Hunter>, <Game 40800, Super Meat Boy>]"
 
 
 def test_search_by_publisher(in_memory_repo):
     games = search_services.search_games("Pablo Picazo", "publisher", in_memory_repo)
     assert games[0] == Game(1995240, "Deer Journey")
+
+
+def test_search_no_results(in_memory_repo):
+    games = search_services.search_games("Nonexistent Game", "title", in_memory_repo)
+    assert len(games) == 0
+
+
+def test_game_amount_by_genre(in_memory_repo):
+    assert 100 == library_services.get_game_amount_by_genre("Action", in_memory_repo)
+
+
+def test_get_games_pagination(in_memory_repo):
+    games_page_1 = library_services.get_games(1, 3, "Newest", in_memory_repo)
+    games_page_2 = library_services.get_games(2, 3, "Newest", in_memory_repo)
+    assert games_page_1[0].date_sort_key() >= games_page_2[0].date_sort_key()
+

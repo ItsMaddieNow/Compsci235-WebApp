@@ -93,3 +93,14 @@ def test_add_duplicates_wishlist(in_memory_repo):
     with pytest.raises(RepositoryException):
         in_memory_repo.add_wishlist(Wishlist(User("DJ_Hyperfresh", "6Zqzvso%hPn25$")))
 
+
+def test_get_games_by_genre(in_memory_repo):
+    genre = in_memory_repo.get_genre("Racing")
+    games = in_memory_repo.get_games_by_genre(genre, 0, 3)
+    assert len(games) == 3
+
+
+def test_get_games_pagination(in_memory_repo):
+    games_page_1 = in_memory_repo.get_games(1, 3, "Newest")
+    games_page_2 = in_memory_repo.get_games(2, 3, "Newest")
+    assert games_page_1[0].date_sort_key() >= games_page_2[0].date_sort_key()
