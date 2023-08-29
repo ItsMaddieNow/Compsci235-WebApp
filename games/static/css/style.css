@@ -273,3 +273,21 @@ body{
 .git p {
     font-size: 18px;
 }
+
+
+.genre-sidebar{
+    background-color:dodgerblue;
+    position:fixed;
+    color:white;
+    height: 100%;
+    width: 250px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+
+.all-games h1{
+    padding-bottom:30px;
+    color:dodgerblue;
+    text-align:center;
+}
