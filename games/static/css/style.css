@@ -1,59 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+
 body{
     margin:0;
     font-family: 'Rubik', sans-serif;
 }
+
 .titlebar{
     width: 100%;
-    /*
-    background-color:oklch(88.6% 0.07 227);
-     */
     background-color:#75bff5;
     text-align: center;
-
-
     padding: 12px 0;
-
 }
+
 .titlebar h1 {
+    font-weight: 500;
+    font-size: 36px;
+    margin: 0;
+}
+
+.titlebar p {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+}
+
+.titlebar a.titlebar-link {
     font-weight: 500;
     font-size: 36px;
     margin: 0;
     text-decoration: none;
     color: inherit;
 }
-.titlebar p {
-    font-weight: 400;
-    font-size: 14px;
-    margin: 0;
-}
+
 .sidebar{
     background-color:dodgerblue;
     position: fixed;
-    /*
-    background-color: oklch(61.6% 0.117 227);
-     */
     color:white;
     height: 100%;
     width: 250px;
     padding: 20px 0;
     text-align: center;
-
 }
+
 .sidebar img {
     margin-bottom: 0;
 }
 
 .sidebar h2 {
-    margin-top: -12px; /* This removes the top margin of the h2 element */
+    margin-top: -12px;
 }
 
 .sidebar .page{
     display: block;
-    /*
-    background-color: #a5e1fb;
-    background-color: oklch(88.6% 0.07 227);
-     */
     background-color: #75bff5;
     color:white;
     margin: 8px;
@@ -61,32 +59,30 @@ body{
     padding-top: 10px;
     padding-bottom: 10px;
     text-decoration: none;
-
 }
+
 .sidebar .page:hover{
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
-   background-color:white;
+    background-color:white;
     color: dodgerblue;
-}   
-.sidebar .current{
-    /*
-    background-color: white;
-     */
 }
+
+.sidebar .current{
+}
+
 .scrolling{
     margin-left: 250px;
 }
+
 .content{
     margin: 20px;
-    /*margin: auto;
-    width: 800px;
-    max-width: inherit;*/
-
 }
+
 .content h2{
     text-align: center;
     font-weight: 500;
 }
+
 .bottom{
     position: fixed;
     left: 0;
@@ -94,9 +90,9 @@ body{
     width: calc(250px - 20px);
     padding: 10px;
 }
+
 .headyThing{
     color: #2099c2;
-    color: oklch(61.6% 0.117 227);
     font-weight: 500;
 }
 
@@ -105,15 +101,18 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+
 .description img{
     float: right;
 }
+
 .tag{
     background-color: dodgerblue;
     color: white;
     border-radius: 999px;
     padding: 0.5em;
 }
+
 .tags{
     display: flex;
     flex-direction: row;
@@ -124,51 +123,100 @@ body{
     row-gap: 5px;
 }
 
-.titlebar a.titlebar-link{
-    font-weight: 500;
-    font-size: 36px;
-    margin: 0;
-    text-decoration: none;
-    color: inherit;
-}
-
 .searchCenter{
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 80vh;
 }
 
-.searchbar{
-    border-radius: 1000px;
-    border-color: #007BFF;
-    border-width: 2px;
-    border-style: ridge;
+.searchbar, .searchbarCentered, .searchbarTop {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid dodgerblue;
+    background: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    font-family: 'Rubik', sans-serif;
 }
 
-.searchbar input[type="text"]{
+.searchTop{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.searchTop .searchbarTop {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid dodgerblue;
+    background: #ffffff;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    font-family: 'Rubik', sans-serif;
+}
+
+.searchbar input[type="text"],
+.searchbarCentered input[type="text"],
+.searchbarTop input[type="text"] {
+    flex-grow: 1;
     border: none;
-    width: fit-content;
-    padding: 1px 6px;
+    padding: 10px;
+    border-radius: 10px;
     outline: none;
+    box-shadow: none;
+    font-family: 'Rubik', sans-serif;
 }
 
-.searchbar select{
+.searchbar select,
+.searchbarCentered select,
+.searchbarTop select {
     border: none;
     background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: none;
+    font-family: 'Rubik', sans-serif;
 }
 
-.searchbar input[type="submit"]{
+.searchbar input[type="submit"],
+.searchbarCentered input[type="submit"],
+.searchbarTop input[type="submit"] {
     border: none;
-    background: transparent;
+    background: dodgerblue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    font-family: 'Rubik', sans-serif;
 }
 
-.searchbar *{
-    border-radius: inherit;
-    float: left;
-    height: 24px;
+.searchbar input[type="submit"]:hover,
+.searchbarCentered input[type="submit"]:hover,
+.searchbarTop input[type="submit"]:hover {
+    background: #1e90ff;
 }
 
+.searchbar *,
+.searchbarCentered *,
+.searchbarTop * {
+    border-radius: 10px;
+    margin-right: 5px;
+    font-family: 'Rubik', sans-serif;
+}
 
-
-.searchbar input[type="text"]:active{
-    border: none;
+.searchbar input[type="text"]:focus,
+.searchbarCentered input[type="text"]:focus,
+.searchbarTop input[type="text"]:focus {
+    border: 1px solid dodgerblue;
+    font-family: 'Rubik', sans-serif;
 }
