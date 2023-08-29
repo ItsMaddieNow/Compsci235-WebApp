@@ -98,13 +98,19 @@ body{
 
 .description{
     width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border-radius: 10px;
 }
+
 
 .description img{
     float: right;
+    margin: 0 0 0 20px;
 }
+
 
 .tag{
     background-color: dodgerblue;
@@ -123,16 +129,23 @@ body{
     row-gap: 5px;
 }
 
-.content{
-    margin: 20px;
+.content p{
+    text-align: justify;
+    line-height: 1.6;
+    font-size: 16px;
 }
-.content h2{
+
+.searchPageContent h2{
     text-align: center;
     font-weight: 500;
     margin-bottom: 10px;
     margin-top: 180px;
 }
+
 .content p{
+    text-align: justify;
+}
+.searchPageContent p{
     text-align: center;
     margin-bottom: -150px;
 }
@@ -234,3 +247,5 @@ body{
     border: 1px solid dodgerblue;
     font-family: 'Rubik', sans-serif;
 }
+
+
