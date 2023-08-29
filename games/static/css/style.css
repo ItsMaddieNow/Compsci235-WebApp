@@ -19,6 +19,8 @@ body{
     font-weight: 500;
     font-size: 36px;
     margin: 0;
+    text-decoration: none;
+    color: inherit;
 }
 .titlebar p {
     font-weight: 400;
@@ -97,6 +99,7 @@ body{
     color: oklch(61.6% 0.117 227);
     font-weight: 500;
 }
+
 .description{
     width: 800px;
     margin-left: auto;
@@ -119,6 +122,14 @@ body{
     flex-wrap: wrap;
     column-gap: 5px;
     row-gap: 5px;
+}
+
+.titlebar a.titlebar-link{
+    font-weight: 500;
+    font-size: 36px;
+    margin: 0;
+    text-decoration: none;
+    color: inherit;
 }
 
 .searchCenter{
