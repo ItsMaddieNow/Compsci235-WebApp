@@ -11,11 +11,15 @@
     <strong title="Current page">{{ current_page }}</strong>
 
     {% if current_page < total_pages %}
-        <a href="{{ url_for('library_bp.games', page=current_page+ 1, sortBy=sort_by) }}" title="Go to the next page">></a>
+        <a href="{{ url_for('library_bp.games', page=current_page + 1, sortBy=sort_by) }}" title="Go to the next page">></a>
     {% else %}
         <span title="No next" class="inactive">></span>
     {% endif %}
 
-    <!-- Always show the '>>' link to go to the last page -->
-    <a href="{{ url_for('library_bp.games', page=total_pages, sortBy=sort_by) }}" title="Go to the last page">>></a>
+
+    {% if total_pages > 1 %}
+        <a href="{{ url_for('library_bp.games', page=total_pages, sortBy=sort_by) }}" title="Go to the last page">>></a>
+    {% else %}
+        <span title="No last page" class="inactive">>></span>
+    {% endif %}
 </div>
