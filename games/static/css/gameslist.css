@@ -9,7 +9,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     width: 860px;
-    margin: 0 auto;
+    margin: 15px auto 0;
 }
 
 .game{
