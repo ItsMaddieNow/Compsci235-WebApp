@@ -285,11 +285,11 @@ body{
 
 .genre-sidebar {
     float: left;
-    width: 200px; /* You can adjust the width as you see fit */
-    padding: 0; /* Adding some padding for aesthetics */
+    width: 200px;
+    padding: 0;
     margin: 0;
     margin-left:-20px;
-    margin-top:-20px;
+    margin-top:-88px;
     background-color: #E6E6FA;
     height: 100%;
 
