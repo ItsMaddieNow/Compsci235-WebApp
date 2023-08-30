@@ -275,19 +275,55 @@ body{
 }
 
 
-.genre-sidebar{
-    background-color:dodgerblue;
-    position:fixed;
-    color:white;
-    height: 100%;
-    width: 250px;
-    padding: 20px 0;
-    text-align: center;
-}
-
-
 .all-games h1{
     padding-bottom:30px;
     color:dodgerblue;
     text-align:center;
+}
+
+
+
+.genre-sidebar {
+    float: left;
+    width: 200px; /* You can adjust the width as you see fit */
+    padding: 0; /* Adding some padding for aesthetics */
+    margin: 0;
+    margin-left:-20px;
+    margin-top:-20px;
+    background-color: #E6E6FA;
+    height: 100%;
+
+}
+
+.genre-sidebar h1 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #333;
+}
+
+.genre-sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.genre-sidebar ul li {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.2s ease;
+}
+
+.genre-sidebar ul li:hover {
+    background-color: #f2f2f2;
+}
+
+.genre-sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: block; /* Makes the entire list item clickable */
+}
+
+.genre-sidebar ul li a:hover {
+    color: dodgerblue;
 }
