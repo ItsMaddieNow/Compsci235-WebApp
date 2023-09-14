@@ -10,12 +10,14 @@ wishlist_blueprint = Blueprint(
 
 @wishlist_blueprint.route('/wishlist/add', methods=["POST"])
 def wishlist_add():
+    pass
 
 
 @wishlist_blueprint.route('/wishlist/remove', methods=["POST"])
 def wishlist_remove():
+    pass
 
 
 @wishlist_blueprint.route('/wishlist/', methods=["GET"])
 def wishlist():
-
+    return render_template("wishlist.html")
