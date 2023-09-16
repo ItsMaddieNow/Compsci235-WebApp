@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, request
 
+import config
 import games.adapters.datareader
 import games.adapters.datareader.repository as repo
 from games.adapters.datareader.memory_repository import MemoryRepository
@@ -13,6 +14,12 @@ def create_app(test_config=None):
 
     # Create the Flask app object.
     app = Flask(__name__)
+
+    app.config.from_object(config.Config())
+
+    if test_config is not None:
+        # Load test configuration, and override any configuration settings.
+        app.config.from_mapping(test_config)
 
     repo.repo_instance = MemoryRepository()
     repo.repo_instance.populate_data_from_file("./games/adapters/data/games.csv")
@@ -29,6 +36,9 @@ def create_app(test_config=None):
 
         from .search import search
         app.register_blueprint(search.search_blueprint)
+
+        from .auth import authentication
+        app.register_blueprint(authentication.auth_blueprint)
 
     app.jinja_env.globals.update(copyright_rand=copyright_rand)
 
