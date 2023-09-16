@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, url_for, redirect
+from functools import wraps
+
+from flask import Blueprint, render_template, url_for, redirect, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.csrf.session import SessionCSRF
@@ -33,13 +35,33 @@ def login():
     credential_error = None
     if form.validate_on_submit():
         try:
-            services.get_user(form.username.data, repo.repo_instance)
+            user = services.get_user(form.username.data, repo.repo_instance)
+
+            services.authenticate_user(user['username'], form.password.data, repo.repo_instance)
+
+            session.clear()
+            session["username"] = user["username"]
+            return redirect(url_for("home_bp.home"))
         except services.UnknownUserException:
             credential_error = "Invalid Credential"
         except services.AuthenticationException:
             credential_error = "Invalid Credential"
     return render_template("auth/credentials.html",
                            title="Login", auth_error_message=credential_error, form=form)
+
+
+@auth_blueprint.route("/logout")
+def logout():
+    session.clear()
+    redirect(url_for("home_bp.home"))
+
+
+def login_required(view):
+    @wraps(view)
+    def wrapped(**kwargs):
+        if "username" not in session:
+            return redirect("auth_pb.login")
+        return view(**kwargs)
 
 
 class BaseForm(FlaskForm):
@@ -71,7 +93,7 @@ class CharacterValidation:
         self.message = message
 
     def __call__(self, form, field):
-        validator = PasswordValidator()\
+        validator = PasswordValidator() \
             .has().digits() \
             .has().uppercase() \
             .has().lowercase() \
