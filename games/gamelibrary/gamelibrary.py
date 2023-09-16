@@ -25,6 +25,7 @@ def games():
                            current_page=page,
                            total_pages=pages,
                            sort_by=sort_by,
+                           selected_genre=None,
                            genre_name=None
                            )
 

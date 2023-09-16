@@ -25,7 +25,13 @@
 
     {% set notFoundMessage = 'No Games found at specified page' %}
     <div class="all-games">
-        <h2>All Games:</h2>
+        <h2>
+            {% if selected_genre %}
+                All {{ selected_genre }} Games:
+            {% else %}
+                All Games:
+            {% endif %}
+        </h2>
     </div>
     {% include "gamesList.html" %}
 
