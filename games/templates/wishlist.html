@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="wishlist">
+    <h2>My Wishlist</h2>
+    <ul>
+    {% for game in games %}
+        <li>
+            {{ game.title }} - <a href="{{ url_for('wishlist_bp.wishlist_remove') }}" data-game-id="{{ game.id }}">Remove</a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
