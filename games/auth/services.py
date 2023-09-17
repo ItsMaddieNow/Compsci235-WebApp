@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from games.adapters.datareader.repository import AbstractRepository
+from games.adapters.datareader.repository import AbstractRepository, RepositoryException
 from games.domainmodel.model import User
 
 
@@ -18,13 +18,11 @@ def new_user(username: str, password: str, repo: AbstractRepository):
     if user is not None:
         raise NonUniqueUsernameException
     pwd_hash = generate_password_hash(password)
-
     repo.add_user(User(username, pwd_hash))
 
 
 def get_user(username: str, repo: AbstractRepository):
     user = repo.get_user(username)
-
     if user is None:
         raise UnknownUserException
 
@@ -32,7 +30,7 @@ def get_user(username: str, repo: AbstractRepository):
 
 
 def user_to_dict(user: User):
-    return {"username": User.username_for_ui, "password": User.password}
+    return {"username": user.username_for_ui, "password": user.password}
 
 
 def authenticate_user(username: str, password: str, repo: AbstractRepository):

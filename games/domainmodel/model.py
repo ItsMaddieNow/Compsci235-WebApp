@@ -268,7 +268,7 @@ class User:
         self.__favourite_games: list[Game] = []
 
     @property
-    def username(self):
+    def username_unique(self):
         return self.__username.lower()
 
     @property

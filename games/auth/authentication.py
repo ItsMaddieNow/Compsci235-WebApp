@@ -24,7 +24,6 @@ def register():
             return redirect(url_for('auth_bp.login'))
         except services.NonUniqueUsernameException:
             username_not_unique = "This Username Is Already Taken"
-
     return render_template("auth/credentials.html",
                            title="Register", auth_error_message=username_not_unique, form=form)
 
@@ -36,16 +35,15 @@ def login():
     if form.validate_on_submit():
         try:
             user = services.get_user(form.username.data, repo.repo_instance)
-
             services.authenticate_user(user['username'], form.password.data, repo.repo_instance)
 
             session.clear()
             session["username"] = user["username"]
             return redirect(url_for("home_bp.home"))
         except services.UnknownUserException:
-            credential_error = "Invalid Credential"
+            credential_error = "Invalid Credentials"
         except services.AuthenticationException:
-            credential_error = "Invalid Credential"
+            credential_error = "Invalid Credentials"
     return render_template("auth/credentials.html",
                            title="Login", auth_error_message=credential_error, form=form)
 
@@ -75,7 +73,7 @@ class BaseForm(FlaskForm):
 class LengthValidation:
     def __init__(self, message=None):
         self.min_length = 10
-        if message is None:
+        if not message:
             message = f"Your password should contain at least {self.min_length} characters"
         self.message = message
 
@@ -83,14 +81,13 @@ class LengthValidation:
         validator = PasswordValidator().min(self.min_length)
         valid = validator.validate(field.data)
         if not valid:
-            print("invalid password length")
-            raise ValidationError
+            raise ValidationError(self.message)
 
 
 class CharacterValidation:
     def __init__(self, message=None):
-        if message is None:
-            message = f"Your password should contain lowercase and uppercase letters, numbers, and no spaces"
+        if not message:
+            message = "Your password should contain lowercase and uppercase letters, numbers, and no spaces"
         self.message = message
 
     def __call__(self, form, field):
@@ -101,7 +98,7 @@ class CharacterValidation:
             .has().no().spaces()
         valid = validator.validate(field.data)
         if not valid:
-            raise ValidationError
+            raise ValidationError(self.message)
 
 
 class RegistrationForm(BaseForm):
