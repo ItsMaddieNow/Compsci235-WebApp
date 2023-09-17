@@ -107,10 +107,10 @@ class MemoryRepository(AbstractRepository):
 
     # User Methods
     def add_user(self, user: User) -> bool:
-        if user.username not in self.__users:
-            self.__users[user.username] = user
+        if user.username_unique not in self.__users:
+            self.__users[user.username_unique] = user
             return True
-        raise RepositoryException(f'User with username {user.username} already exists.')
+        raise RepositoryException(f'User with username {user.username_unique} already exists.')
 
     def get_user(self, username: str) -> User:
         if username in self.__users:
@@ -130,13 +130,13 @@ class MemoryRepository(AbstractRepository):
 
     # Wishlist Methods
     def add_wishlist(self, wishlist: Wishlist) -> bool:
-        if wishlist.user.username not in self.__wishlists:
-            self.__wishlists[wishlist.user.username] = wishlist
+        if wishlist.user.username_unique not in self.__wishlists:
+            self.__wishlists[wishlist.user.username_unique] = wishlist
             return True
-        raise RepositoryException(f'Wishlist for user {wishlist.user.username} already exists.')
+        raise RepositoryException(f'Wishlist for user {wishlist.user.username_unique} already exists.')
 
     def get_wishlist(self, user: User) -> Wishlist:
-        return self.__wishlists.get(user.username)
+        return self.__wishlists.get(user.username_unique)
 
     def remove_game_from_wishlist(self, user: User, game: Game) -> bool:
         wishlist = self.get_wishlist(user)

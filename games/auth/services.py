@@ -32,7 +32,7 @@ def get_user(username: str, repo: AbstractRepository):
 
 
 def user_to_dict(user: User):
-    return {"username": User.username, "password": User.password}
+    return {"username": User.username_for_ui, "password": User.password}
 
 
 def authenticate_user(username: str, password: str, repo: AbstractRepository):
