@@ -56,12 +56,13 @@ def logout():
     redirect(url_for("home_bp.home"))
 
 
-def login_required(view):
-    @wraps(view)
-    def wrapped(**kwargs):
+def login_required(f):
+    @wraps(f)
+    def wrapper(**kwargs):
         if "username" not in session:
-            return redirect("auth_pb.login")
-        return view(**kwargs)
+            return redirect(url_for("auth_bp.login"))
+        return f(**kwargs)
+    return wrapper
 
 
 class BaseForm(FlaskForm):
