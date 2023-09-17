@@ -40,6 +40,9 @@ def create_app(test_config=None):
         from .auth import authentication
         app.register_blueprint(authentication.auth_blueprint)
 
+        from .wishlist import wishlist
+        app.register_blueprint(wishlist.wishlist_blueprint)
+
     app.jinja_env.globals.update(copyright_rand=copyright_rand)
 
     return app
