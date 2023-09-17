@@ -1,4 +1,12 @@
 <div class="titlebar">
-    <a href="{{ url_for('home_bp.home') }}" class="titlebar-link">Game Library</a>
-    <p>{{ copyright_rand()|safe }}</p>
+    <div></div>
+    <div>
+        <a href="{{ url_for('home_bp.home') }}" class="titlebar-link">Game Library</a>
+        <p>{{ copyright_rand()|safe }}</p>
+    </div>
+    <div>
+        {% if session["username"] is not none %}
+            {{ session["username"] }}
+        {% endif %}
+    </div>
 </div>
