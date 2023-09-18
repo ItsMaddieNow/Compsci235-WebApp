@@ -10,8 +10,10 @@ class NonUniqueUsernameException(Exception):
 class UnknownUserException(Exception):
     pass
 
+
 class AuthenticationException(Exception):
     pass
+
 
 def new_user(username: str, password: str, repo: AbstractRepository):
     user = repo.get_user(username)
