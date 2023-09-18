@@ -1,4 +1,5 @@
 import pytest
+from flask import request, url_for, session
 
 
 def test_index(client):
@@ -25,3 +26,70 @@ def test_search(client, term, key, result):
     response = client.get("/search", query_string={"term": term, "key": key})
     assert result in response.data
 
+
+def test_account_creation(client):
+    # Test that the page can be retrieved
+    assert client.get("/auth/register").status_code == 200
+
+    # Check that multiple users can be successfully registered
+    response = client.post("/auth/register", data={"username": "DJ_HyperFresh", "password": "**7Zr!g^XMh%r3"},
+                           follow_redirects=True)
+    assert len(response.history) == 1
+    assert response.request.path == '/auth/login'
+
+    response = client.post("/auth/register", data={"username": "MC_Princess", "password": "**7Zr!g^XMh%r3"},
+                           follow_redirects=True)
+    assert len(response.history) == 1
+    assert response.request.path == '/auth/login'
+
+
+@pytest.mark.parametrize(("username", "password", "message"),
+                         (("Ad", "**7Zr!g^XMh%r3", b"Your Username needs to be longer"),
+                          ("", "**7Zr!g^XMh%r3", b"Please enter your Username"),
+                          ("DJ_HyperFresh", "", b"Your password is required"),
+                          ("DJ_HyperFresh", "**7Zr!g^XMh% r3",
+                           b"Your password should contain lowercase and uppercase letters, numbers, and no spaces"),
+                          ("DJ_HyperFresh", "**7zr!g^xmh%r3",
+                           b"Your password should contain lowercase and uppercase letters, numbers, and no spaces"),
+                          ("DJ_HyperFresh", "**7ZR!G^XMH%R3",
+                           b"Your password should contain lowercase and uppercase letters, numbers, and no spaces"),
+                          ("DJ_HyperFresh", "**TZr!g^XMh%rE",
+                           b"Your password should contain lowercase and uppercase letters, numbers, and no spaces"),
+                          ("DJ_HyperFresh", "**7Zr!g^X", b"Your password should contain at least 10 characters")))
+def test_input_validation(username, password, message, client):
+    response = client.post("/auth/register", data={"username": username, "password": password})
+    assert message in response.data
+
+
+def test_existing_user(client):
+    # register user
+    client.post("/auth/register", data={"username": "DJ_HyperFresh", "password": "**7Zr!g^XMh%r3"})
+    # try register user second time with same capitalization
+    response = client.post("/auth/register", data={"username": "DJ_HyperFresh", "password": "**7Zr!g^XMh%r3"})
+    assert b"This Username Is Already Taken" in response.data
+    # try register user again with different capitalization
+    response = client.post("/auth/register", data={"username": "DJ_hyperfresh", "password": "**7Zr!g^XMh%r3"})
+    assert b"This Username Is Already Taken" in response.data
+
+
+def test_login(client, auth):
+    assert client.get("/auth/login").status_code == 200
+
+    auth.register()
+    response = client.post("auth/login", data={"username": "DJ_HyperFresh", "password": "**7Zr!g^XMh%r3"},
+                           follow_redirects=True)
+    assert len(response.history) == 1
+    assert response.request.path == '/'
+
+    with client:
+        client.get("/")
+        assert session["username"] == "DJ_HyperFresh"
+
+
+def test_logout(client, auth):
+    auth.register()
+    auth.login()
+
+    with client:
+        auth.logout()
+        assert "username" not in session

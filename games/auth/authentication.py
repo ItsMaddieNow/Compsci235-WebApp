@@ -16,11 +16,15 @@ auth_blueprint = Blueprint(
 
 @auth_blueprint.route('/register', methods=["GET", "POST"])
 def register():
+    print("register")
     form = RegistrationForm()
     username_not_unique = None
+    print(f"is submitted: {form.is_submitted()} passes validation: {form.validate()}")
+    print(form.errors)
     if form.validate_on_submit():
         try:
             services.new_user(form.username.data, form.password.data, repo.repo_instance)
+            print("redirecting")
             return redirect(url_for('auth_bp.login'))
         except services.NonUniqueUsernameException:
             username_not_unique = "This Username Is Already Taken"
@@ -63,13 +67,6 @@ def login_required(f):
     return wrapper
 
 
-class BaseForm(FlaskForm):
-    class Meta:
-        csrf = True
-        csrf_true = SessionCSRF
-        # csrf_secret = b'Pearlina Wedding DLC'  # Replace With Proper Secret Later and Use Github Secrets
-
-
 class LengthValidation:
     def __init__(self, message=None):
         self.min_length = 10
@@ -101,7 +98,7 @@ class CharacterValidation:
             raise ValidationError(self.message)
 
 
-class RegistrationForm(BaseForm):
+class RegistrationForm(FlaskForm):
     username = StringField("Username", [
         DataRequired(message="Please enter your Username"),
         Length(message="Your Username needs to be longer", min=3)
@@ -114,7 +111,7 @@ class RegistrationForm(BaseForm):
     submit = SubmitField('Register')
 
 
-class LoginForm(BaseForm):
+class LoginForm(FlaskForm):
     username = StringField('Username', [
         DataRequired()])
     password = PasswordField('Password', [
