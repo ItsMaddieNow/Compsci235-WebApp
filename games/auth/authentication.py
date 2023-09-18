@@ -55,7 +55,7 @@ def login():
 @auth_blueprint.route("/logout")
 def logout():
     session.clear()
-    redirect(url_for("home_bp.home"))
+    return redirect(url_for("home_bp.home"))
 
 
 def login_required(f):
