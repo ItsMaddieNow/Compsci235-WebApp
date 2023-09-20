@@ -355,6 +355,16 @@ body{
 .searchButton:hover {
     background: #1e90ff;
 }
+.user-features {
+        display: flex;
+        justify-content: space-between; /* This ensures there's space between the two child divs */
+    }
+
+.add-to-wishlist, .write-review {
+
+    margin: 0 10px; /* This gives 10px of space to the left and right of each div */
+}
+
 
 .add-to-wishlist {
     color: white;
@@ -375,6 +385,8 @@ body{
     padding-top: 10px;
     padding-bottom:10px;
 }
+
+
 .heartIcon{
     width:30px;
     height:20px;
@@ -385,5 +397,34 @@ body{
 }
 
 .add-to-wishlist:hover{
+    transform: scale(1.10);
+}
+
+.write-review {
+    color: white;
+    padding: 15px 40px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 30px;
+    width: 150px;
+    border-radius: 999px;
+    background-color: mediumpurple;
+    margin-top: 15px;
+    padding-left:3px;
+    padding-right:3px;
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+.reviewIcon{
+    width:30px;
+    height:20px;
+}
+
+.write-review:hover{
     transform: scale(1.10);
 }
