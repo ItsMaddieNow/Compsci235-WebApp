@@ -244,6 +244,8 @@ body{
     font-family: 'Rubik', sans-serif;
 }
 
+
+
 .para h2{
     margin-top: 50px;
     text-align:left;
@@ -328,4 +330,28 @@ body{
 
 .genre-sidebar ul li a:hover {
     color: dodgerblue;
+}
+/* Styling for the button with the SVG */
+.searchButton {
+    border: none;
+    background: dodgerblue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchButton img {
+    width: 20px;  /* You can adjust this based on the desired display size of your SVG */
+    height: 20px; /* Adjust this too */
+}
+
+/* Hover effect for the button */
+.searchButton:hover {
+    background: #1e90ff;
 }

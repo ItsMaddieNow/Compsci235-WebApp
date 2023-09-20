@@ -5,5 +5,7 @@
         <option value="publisher">Publisher</option>
         <option value="description">Description</option>
     </select>
-    <input type="submit" value="Search">
+    <button type="submit" class="searchButton">
+        <img src='{{ url_for('static', filename='search-icon.svg')}}' alt="Search">
+    </button>
 </form>
