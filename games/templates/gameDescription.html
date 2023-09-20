@@ -24,5 +24,9 @@
             {% if game.supports_mac %} <div class="tag">🍎 Mac</div> {% endif %}
 
         </div>
+        <div class="add-to-wishlist">
+            <img src="{{ url_for('static', filename='heart-icon.svg') }}" class="heartIcon" alt="heart-icon">
+            <p>Add to Wishlist</p>
+        </div>
     </div>
 {% endblock %}
