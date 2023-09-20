@@ -428,3 +428,7 @@ body{
 .write-review:hover{
     transform: scale(1.10);
 }
+
+.checked {
+  color: orange;
+}

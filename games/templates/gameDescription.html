@@ -7,6 +7,13 @@
         <p><span class="headyThing">Price:</span> ${{ game.price }}</p>
         <p><span class="headyThing">Publisher:</span> {{ game.publisher.publisher_name }}</p>
         <p><span class="headyThing">Release Date:</span> {{ game.release_date }}</p>
+        <p><span class="headyThing">User Rating Average:</span><i class="fas fa-star checked"></i>
+            <i class="fas fa-star checked"></i>
+            <i class="fas fa-star checked"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            (2)
+        </p>
         <div class="tags" style="width: calc(800px - 460px);">
         <div class="headyThing">Genres:</div>
             {% for genre in game.genres %}
