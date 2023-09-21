@@ -6,6 +6,7 @@ body{
 }
 
 .titlebar{
+    position: relative;
     width: 100%;
     background-color:#75bff5;
     text-align: center;
@@ -24,6 +25,7 @@ body{
     font-weight: 400;
     font-size: 14px;
     margin: 0;
+    margin-left:130px;
 }
 
 .titlebar a.titlebar-link {
@@ -32,6 +34,7 @@ body{
     margin: 0;
     text-decoration: none;
     color: inherit;
+    margin-left:130px;
 }
 
 .sidebar{
@@ -69,8 +72,6 @@ body{
     color: dodgerblue;
 }
 
-.sidebar .current{
-}
 
 .scrolling{
     margin-left: 250px;
@@ -286,51 +287,6 @@ body{
 }
 
 
-
-.genre-sidebar {
-    float: left;
-    width: 200px;
-    padding: 0;
-    margin: 0;
-    margin-left:-20px;
-    margin-top:-88px;
-    background-color: #E6E6FA;
-    height: 100%;
-
-}
-
-.genre-sidebar h1 {
-    margin-bottom: 15px;
-    font-size: 24px;
-    color: #333;
-}
-
-.genre-sidebar ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
-
-.genre-sidebar ul li {
-    padding: 12px 16px;
-    border-bottom: 1px solid #ccc;
-    transition: background-color 0.2s ease;
-}
-
-.genre-sidebar ul li:hover {
-    background-color: #f2f2f2;
-}
-
-.genre-sidebar ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    display: block; /* Makes the entire list item clickable */
-}
-
-.genre-sidebar ul li a:hover {
-    color: dodgerblue;
-}
 /* Styling for the button with the SVG */
 .searchButton {
     border: none;
@@ -347,8 +303,8 @@ body{
 }
 
 .searchButton img {
-    width: 20px;  /* You can adjust this based on the desired display size of your SVG */
-    height: 20px; /* Adjust this too */
+    width: 20px;
+    height: 20px;
 }
 
 /* Hover effect for the button */
@@ -431,4 +387,58 @@ body{
 
 .checked {
   color: orange;
+}
+.intro p{
+    text-align: center;
+}
+
+.my-profile-button{
+    float:right;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-profile-button img{
+    width:35px;
+    height:35px;
+}
+
+
+.username-button {
+    background-color: #007BFF;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-top: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.username-button:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 90px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 1;
+    margin-right:30px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
 }

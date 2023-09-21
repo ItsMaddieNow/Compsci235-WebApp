@@ -5,8 +5,20 @@
         <p>{{ copyright_rand()|safe }}</p>
     </div>
     <div>
-        {% if session["username"] is not none %}
-            {{ session["username"] }}
-        {% endif %}
+    {% if session["username"] %}
+        <div class="my-profile-button">
+            <img src="{{ url_for('static', filename='default-user-icon.svg') }}" alt="userIcon" class="user-icon">
+            <div class="username-button">
+                {{ session["username"] }}
+                <!-- Dropdown content can go here, for example: -->
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Wishlist</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
     </div>
 </div>
