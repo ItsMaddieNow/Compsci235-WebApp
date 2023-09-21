@@ -32,14 +32,18 @@
 
         </div>
     <div class="user-features">
-        <div class="add-to-wishlist">
+    <form action="{{ url_for('wishlist_bp.wishlist_add') }}" method="post">
+        <input type="hidden" name="game_id" value="{{ game.game_id }}">
+        <button type="submit" class="add-to-wishlist">
             <img src="{{ url_for('static', filename='heart-icon.svg') }}" class="heartIcon" alt="heart-icon">
             <p>Add to Wishlist</p>
-        </div>
-        <div class="write-review">
-            <img src="{{ url_for('static', filename='review-icon.svg') }}" class="reviewIcon" alt="review-icon">
-            <p>Write a review</p>
-        </div>
+        </button>
+    </form>
+
+    <div class="write-review">
+        <img src="{{ url_for('static', filename='review-icon.svg') }}" class="reviewIcon" alt="review-icon">
+        <p>Write a review</p>
     </div>
+</div>
     </div>
 {% endblock %}

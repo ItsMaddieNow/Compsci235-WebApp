@@ -1,14 +1,21 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="wishlist">
-    <h2>My Wishlist</h2>
+<h2>My Wishlist</h2>
+
+{% if wishlist_games %}
     <ul>
-    {% for game in games %}
+    {% for game in wishlist_games %}
         <li>
-            {{ game.title }} - <a href="{{ url_for('wishlist_bp.wishlist_remove') }}" data-game-id="{{ game.id }}">Remove</a>
+            {{ game.title }}
+            <form action="{{ url_for('wishlist_bp.wishlist_remove') }}" method="post">
+                <input type="hidden" name="game_id" value="{{ game.game_id }}">
+                <input type="submit" value="Remove from Wishlist">
+            </form>
         </li>
     {% endfor %}
     </ul>
-</div>
+{% else %}
+    <p>Your wishlist is empty!</p>
+{% endif %}
 {% endblock %}

@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 from games.domainmodel.model import Publisher, Genre, Game, User, Review, Wishlist
 from .repository import AbstractRepository, RepositoryException
 from .csvdatareader import GameFileCSVReader
@@ -136,8 +136,32 @@ class MemoryRepository(AbstractRepository):
             return True
         raise RepositoryException(f'Wishlist for user {wishlist.user.username_unique} already exists.')
 
-    def get_wishlist(self, user: User) -> Wishlist:
-        return self.__wishlists.get(user.username_unique)
+    def get_wishlist(self, user: User) -> Any | None:
+        if user is not None:
+            return self.__wishlists.get(user.username_unique)
+        else:
+            return None
+
+    def add_game_to_wishlist(self, user: User, game: Game) -> bool:
+        """Add a game to a user's wishlist."""
+        wishlist = self.get_wishlist(user)
+        if not wishlist:
+            # Create a new wishlist for the user if it doesn't exist
+            wishlist = Wishlist(user)
+            self.__wishlists[user.username_unique] = wishlist
+
+        if game not in wishlist.list_of_games():
+            wishlist.list_of_games().append(game)
+            return True
+        raise RepositoryException(
+            f'Game with ID {game.game_id} is already in the wishlist of user {user.username_unique}.')
+
+    def update_wishlist(self, user: User, new_wishlist: Wishlist) -> bool:
+        """Update a user's wishlist."""
+        if user.username_unique in self.__wishlists:
+            self.__wishlists[user.username_unique] = new_wishlist
+            return True
+        raise RepositoryException(f'No wishlist found for user {user.username_unique}.')
 
     def remove_game_from_wishlist(self, user: User, game: Game) -> bool:
         wishlist = self.get_wishlist(user)
