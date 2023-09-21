@@ -7,17 +7,29 @@
     margin-top:60px;
 
 }
-.auth-dialog {
+.auth-register{
+    border: 1px solid lightgray;
+    margin-left: auto;
+    margin-right: auto;
+    width: 450px;
+    height: 380px;
+    margin-top:60px;
+}
+.auth-dialog, .auth-register {
     text-align: center;
 }
 
 .auth-dialog input[type="text"],
-.auth-dialog input[type="password"] {
+.auth-dialog input[type="password"],
+.auth-register input[type="text"],
+.auth-register input[type="password"]{
     text-align: left;
 }
 
 .auth-dialog input[type="text"],
-.auth-dialog input[type="password"] {
+.auth-dialog input[type="password"],
+.auth-register input[type="text"],
+.auth-register input[type="password"] {
     text-align: left;
     font-size: 18px;
     padding: 10px 15px;
@@ -28,16 +40,20 @@
     display: block;
     outline: none;
     transition: border-color 0.3s ease;
+    text-align: left;
+    font-size: 18px;
+    background: transparent;
+    border: none;
+    flex-grow: 1;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
 
 .auth-dialog input[type="text"]:focus,
-.auth-dialog input[type="password"]:focus {
-    border-bottom: 1px solid #ccc;
-}
-
-.auth-dialog input[type="text"]:focus,
-.auth-dialog input[type="password"]:focus {
+.auth-dialog input[type="password"]:focus,
+.auth-register input[type="text"]:focus,
+.auth-register input[type="password"]:focus{
     border-color: #007BFF;
 }
 .password-group, .user-group {
@@ -56,16 +72,7 @@
     margin-right: 10px;
 }
 
-.auth-dialog input[type="text"],
-.auth-dialog input[type="password"] {
-    text-align: left;
-    font-size: 18px;
-    background: transparent;
-    border: none;
-    flex-grow: 1;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
+
 .sign-in-button .submit-button {
     background-color: dodgerblue; /* Primary color */
     color: white;
@@ -108,5 +115,9 @@
 }
 
 .intro p{
+    text-align: center;
+}
+
+.sign-in-link{
     text-align: center;
 }
