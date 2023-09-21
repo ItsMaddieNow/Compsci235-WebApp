@@ -13,8 +13,8 @@
                 <!-- Dropdown content can go here, for example: -->
                 <div class="dropdown-content">
                     <a href="#">Profile</a>
-                    <a href="#">Wishlist</a>
-                    <a href="#">Logout</a>
+                    <a href="{{ url_for('wishlist_bp.wishlist') }}">Wishlist</a>
+                    <a href="{{ url_for('auth_bp.logout') }}">Logout</a>
                 </div>
             </div>
         </div>
