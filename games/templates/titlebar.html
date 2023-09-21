@@ -18,6 +18,10 @@
                 </div>
             </div>
         </div>
+        {% else %}
+            <a href="{{ url_for('auth_bp.login') }}">
+                <button class="login-button">Login</button>
+            </a>
     {% endif %}
 
     </div>
