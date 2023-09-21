@@ -115,3 +115,7 @@ class AbstractRepository(abc.ABC):
         If there is no Wishlist for the given User, this method returns None.
         """
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def remove_game_from_wishlist(self, user: User, game: Game):
+        raise NotImplementedError
