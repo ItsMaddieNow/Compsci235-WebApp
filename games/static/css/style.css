@@ -394,7 +394,7 @@ body{
 
 .my-profile-button{
     float:right;
-    margin-right: 20px;
+    margin-right: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -445,7 +445,7 @@ body{
 
 .login-button{
     float:right;
-    margin-right: 20px;
+    margin-right: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
