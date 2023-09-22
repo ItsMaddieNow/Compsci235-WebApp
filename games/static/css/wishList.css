@@ -1,6 +1,6 @@
 /* Base styles for the wishlist page */
-h2 {
-    font-size: 36px;
+.wishlist-h2 {
+    font-size: 24px;
     color: dodgerblue;
     text-align: center;
     margin-bottom: 30px;
@@ -79,7 +79,7 @@ input[type="submit"]:hover {
 }
 
 /* If the wishlist is empty */
-p {
+.wishlist-p {
     text-align: center;
     font-size: 18px;
     font-weight: 400;
