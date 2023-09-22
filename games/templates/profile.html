@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>{{ user.username }}'s Profile</h2>
+    <p>Email: {{ user.email }}</p>
+{#    <p>Joined on: {{ user.joined_date.utctime('%Y-%m-%d') }}</p>#}
+
+    <h3>Reviews:</h3>
+    <ul>
+        {% for review in reviews %}
+            <li>{{ review.game.title }}: "{{ review.comment }}"</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Favorite Games:</h3>
+    <ul>
+        {% for game in favorite_games %}
+            <li>{{ game.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

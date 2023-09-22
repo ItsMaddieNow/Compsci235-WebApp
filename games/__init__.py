@@ -43,6 +43,9 @@ def create_app(test_config=None):
         from .wishlist import wishlist
         app.register_blueprint(wishlist.wishlist_blueprint)
 
+        from .profile import profile
+        app.register_blueprint(profile.profile_blueprint)
+
     app.jinja_env.globals.update(copyright_rand=copyright_rand)
 
     return app
