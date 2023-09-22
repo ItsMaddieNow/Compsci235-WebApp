@@ -322,7 +322,7 @@ body{
 }
 
 
-.add-to-wishlist {
+.add-to-wishlist,.write-review,.remove-from-wishlist {
     color: white;
     padding: 15px 40px;
     font-size: 16px;
@@ -331,65 +331,47 @@ body{
     display: flex;
     align-items: center;
     flex-direction: row;
-    height: 30px;
-    width: 150px;
+    height: 50px;
     border-radius: 999px;
+    margin-top: 15px;
+    padding-left:3px;
+    padding-right:3px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.add-to-wishlist{
     background-color: hotpink;
-    margin-top: 15px;
-    padding-left:3px;
-    padding-right:3px;
-    padding-top: 10px;
-    padding-bottom:10px;
-}
-
-
-.heartIcon{
-    width:30px;
-    height:20px;
-}
-
-.tag:hover{
-    transform: scale(1.10);
-}
-
-.add-to-wishlist:hover{
-    transform: scale(1.10);
-}
-
-.write-review {
-    color: white;
-    padding: 15px 40px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    height: 30px;
     width: 150px;
-    border-radius: 999px;
-    background-color: mediumpurple;
-    margin-top: 15px;
-    padding-left:3px;
-    padding-right:3px;
-    padding-top: 10px;
-    padding-bottom:10px;
 }
 
-.reviewIcon{
+.write-review{
+    background-color: mediumpurple;
+    width: 150px;
+}
+
+.remove-from-wishlist{
+    background-color: #EE4B2B;
+    width:200px;
+}
+
+.heartIcon, .reviewIcon,.heartbreakIcon{
     width:30px;
     height:20px;
 }
 
-.write-review:hover{
+
+
+.add-to-wishlist:hover,
+.write-review:hover,
+.tag:hover,
+.remove-from-wishlist:hover{
     transform: scale(1.10);
 }
+
+
 
 .checked {
   color: orange;
-}
-.intro p{
-    text-align: center;
 }
 
 .my-profile-button{
@@ -464,4 +446,5 @@ body{
     background-color:white;
     color: #007BFF;
 }
+
 

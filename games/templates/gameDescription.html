@@ -22,6 +22,11 @@
                 </a>
             {% endfor %}
         </div>
+        <div class="check">
+            {% for wishlist_id in wishlist_game_ids %}
+                <p>{{ wishlist_id }}</p>
+            {% endfor %}
+        </div>
 
         <p><span class="headyThing">About:</span> {{ game.description }}</p>
         <div class="tags">
@@ -32,18 +37,29 @@
 
         </div>
     <div class="user-features">
-    <form action="{{ url_for('wishlist_bp.wishlist_add') }}" method="post">
+        {% if game.game_id not in wishlist_game_ids %}
+            <form action="{{ url_for('wishlist_bp.wishlist_add') }}" method="post">
         <input type="hidden" name="game_id" value="{{ game.game_id }}">
         <button type="submit" class="add-to-wishlist">
             <img src="{{ url_for('static', filename='heart-icon.svg') }}" class="heartIcon" alt="heart-icon">
-            <p>Add to Wishlist</p>
+                Add to Wishlist
+        </button>
+        {% else %}
+            <form action="{{ url_for('wishlist_bp.wishlist_remove') }}" method="post">
+        <input type="hidden" name="game_id" value="{{ game.game_id }}">
+        <button type="submit" class="remove-from-wishlist">
+            <img src="{{ url_for('static', filename='heartbreak-icon.svg') }}" class="heartbreakIcon" alt="heartbreak-icon">
+                Remove from Wishlist
+        </button>
+        {% endif %}
+    </form>
+    <form action="{{ url_for('auth_bp.login') }}" method="post">
+        <input type="hidden" name="review_id" value="{{ game.game_id }}">
+        <button type="submit" class="write-review">
+            <img src="{{ url_for('static', filename='review-icon.svg') }}" class="reviewIcon" alt="review-icon">
+            <p>Write a review</p>
         </button>
     </form>
-
-    <div class="write-review">
-        <img src="{{ url_for('static', filename='review-icon.svg') }}" class="reviewIcon" alt="review-icon">
-        <p>Write a review</p>
-    </div>
 </div>
     </div>
 {% endblock %}
