@@ -3,8 +3,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/wishList.css') }}">
 {% endblock %}
 {% block content %}
-<h2>My Wishlist</h2>
-
+<div class="wishlist-h2">
+    <h2>My Wishlist</h2>
+</div>
 {% if wishlist_games %}
     <ul>
     {% for game in wishlist_games %}
@@ -26,6 +27,8 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>Your wishlist is empty!</p>
+        <div class ="wishlist-p">
+            <p>Your wishlist is empty!</p>
+        </div>
 {% endif %}
 {% endblock %}
