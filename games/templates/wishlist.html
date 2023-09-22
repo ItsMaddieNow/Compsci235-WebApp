@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
-
+{% block extraStyles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wishList.css') }}">
+{% endblock %}
 {% block content %}
 <h2>My Wishlist</h2>
 
@@ -7,7 +9,15 @@
     <ul>
     {% for game in wishlist_games %}
         <li>
-            {{ game.title }}
+            <!-- Begin: Game Card -->
+            <a class="gameLink" href="{{ url_for('description_bp.description', game_id=game.game_id) }}">
+                <figure class="game" >
+                    <img class="gameImage" src="{{ game.image_url }}">
+                    <figcaption>{{ game.title }}</figcaption>
+                </figure>
+            </a>
+            <!-- End: Game Card -->
+
             <form action="{{ url_for('wishlist_bp.wishlist_remove') }}" method="post">
                 <input type="hidden" name="game_id" value="{{ game.game_id }}">
                 <input type="submit" value="Remove from Wishlist">
