@@ -46,6 +46,9 @@ def create_app(test_config=None):
         from .profile import profile
         app.register_blueprint(profile.profile_blueprint)
 
+        from .reviews import reviews
+        app.register_blueprint(reviews.reviews_blueprint)
+
     app.jinja_env.globals.update(copyright_rand=copyright_rand)
 
     return app

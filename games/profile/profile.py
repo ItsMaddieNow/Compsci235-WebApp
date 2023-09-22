@@ -11,6 +11,7 @@ profile_blueprint = Blueprint(
 
 
 @profile_blueprint.route("/profile", methods=["GET"])
+@login_required
 def profile():
     username = session.get('username')  # Get the username from the session
     if not username:
