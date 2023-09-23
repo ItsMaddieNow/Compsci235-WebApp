@@ -34,6 +34,35 @@ form h2 {
     border-radius: 5px;
 }
 
+.star-rating {
+    font-size: 24px;
+    direction: rtl; /* This is used to reverse the order so we can use the general sibling selector (~) effectively */
+    display: inline-block;
+    user-select: none;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: lightgray;
+    cursor: pointer;
+    padding: 5px;
+    display: inline-block; /* This property will align the stars horizontally */
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: gold;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
+
+
+
 /* Textarea styling */
 #comment {
     width: 100%;

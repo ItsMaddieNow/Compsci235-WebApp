@@ -507,7 +507,26 @@ body{
     white-space: nowrap;
 }
 
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    padding: 0;
+}
 
+.star-rating label {
+    font-size: 25px;
+    padding: 0 2px;
+    cursor: pointer;
+    color: #ccc; /* Default star color */
+}
+
+.star-rating label.active {
+    color: gold; /* Active/Filled star color */
+}
+
+.star-rating.read-only label {
+    cursor: default;
+}
 
 
 .date_joined h4, .spirit-animal h4,
