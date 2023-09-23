@@ -4,7 +4,11 @@ from games.description.services import get_game
 from games.reviews.reviews import ReviewForm
 from games.reviews import services as review_services
 from games.domainmodel.model import Game, Genre
-
+from flask import Blueprint, session, request, render_template, jsonify, flash, url_for, redirect
+import math
+import games.wishlist.services as services
+import games.adapters.datareader.repository as repo
+from games.auth.authentication import login_required
 description_blueprint = Blueprint(
     'description_bp', __name__
 )
@@ -14,9 +18,18 @@ description_blueprint = Blueprint(
 def description(game_id):
     game = get_game(int(game_id), repo.repo_instance)
     form = ReviewForm()
-
+    reviews = review_services.get_reviews_for_gamez(game, repo.repo_instance)  # Fetch reviews for the game
+    average_rating = review_services.calculate_average_rating(game, repo.repo_instance)  # Calculate average rating
+    user_id = session["username"]
+    wishlist_games = services.get_user_wishlist(user_id, repo.repo_instance)
+    wishlist_game_ids = [game.game_id for game in wishlist_games]
     if form.validate_on_submit():
         return redirect(url_for('description_bp.description'))  # Redirect after handling form submission
 
-    return render_template('gameDescription.html', game=game, form=form)
+    return render_template('gameDescription.html',
+                           game=game,
+                           form=form,
+                           reviews=reviews,
+                           average_rating=average_rating,
+                           wishlist_game_ids=wishlist_game_ids)
 

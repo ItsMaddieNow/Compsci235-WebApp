@@ -4,13 +4,18 @@ from games.domainmodel.model import User, Game, Review
 
 def add_review_for_game(user: User, game: Game, rating: int, comment: str, repo: AbstractRepository) -> bool:
     """Adds a review for a specific game."""
-    if isinstance(user, User):
-        review = Review(user, game, rating, comment)
-        try:
-            repo.add_review(review)
-            return True
-        except RepositoryException:
-            return False
+    user = repo.get_user(str(user))
+
+    if not user:
+        raise ValueError("User not found in the repository.")
+
+    review = Review(user, game, rating, comment)
+
+    try:
+        repo.add_review(review)
+        return True
+    except RepositoryException as e:
+        return False
 
 
 def get_reviews_for_gamez(game: Game, repo: AbstractRepository) -> list:
