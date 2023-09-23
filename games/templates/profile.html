@@ -29,14 +29,15 @@
                 <h4>My Country: </h4>
                 <p>New Zealand 🇳🇿</p>
             </div>
-            <div class="favourite-genre">
-                <h4>Favourite Genre: </h4>
+            <div class="my-course">
+                <h4>My Course: </h4>
+                <p>COMPSCI235 💻</p>
             </div>
             <div class="on-platforms">
                 <h4>On Platforms:</h4>
-                <div class="profile-tag">🐧 Linux</div>
-                <div class="profile-tag">🍎 Mac</div>
-                <div class="profile-tag">🪟 Windows</div>
+                {% for platform in user.platforms %}
+                    <div class="profile-tag">{{ platform }}</div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -65,7 +66,9 @@
             </h2>
         </div>
         <div class="profile-logout">
-            <h2>Log Out</h2>
+            <h2>Log Out
+                <img src="{{ url_for('static', filename='logout-icon.svg') }}" alt="profileLogout" class="profile-logout-icon">
+            </h2>
         </div>
     </div>
 

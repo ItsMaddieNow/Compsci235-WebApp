@@ -420,23 +420,58 @@ body{
     box-sizing: border-box;
 }
 
+
+
+.user-profile-intro {
+    border: 2px solid transparent;
+    max-width: 97%;
+    margin-left: auto;  /* Center it horizontally */
+    margin-right: auto;
+    background-color: dodgerblue;
+    color:white;
+    border-radius: 8px;
+}
+
+
+.user-profile-picture, .about-me, .profile-reviews, .profile-wishlist, .profile-logout {
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 10px 20px -8px;
+}
+
+.user-profile-picture {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center;    /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    background-color: #f5f5f5;
+}
+
+.profile-wishlist h2, .profile-logout h2 {
+    display: block;
+    margin-top: 60px;
+    height: 30px;
+    color: white;
+}
+
+.profile-heart,
+.profile-logout-icon{
+    display: block;
+    margin: 10px auto;
+}
+
+
 .user-profile-picture,
 .profile-wishlist,
 .profile-logout{
-    border: 2px solid #000000;
-    display: flex;
-    flex-direction: column;
+    border: 2px solid transparent;
     width:310px;
     max-width:310px;
-    justify-content: center;
-    align-items: center;
     border-radius: 8px;
     height:270px;
 }
 .about-me {
     padding: 20px;
     background-color: #f5f5f5;
-    border: 2px solid #000000;
+    border: 2px solid transparent;
     display: flex;
     flex-direction: column;
     width: 310px;
@@ -450,6 +485,10 @@ body{
     height: 270px;
 }
 
+.profile-heart, .profile-logout-icon {
+    width: 130px;
+    height: 130px;
+}
 
 
 .user-pfp{
@@ -473,14 +512,14 @@ body{
 
 
 .date_joined, .spirit-animal,
-.my-country, .favourite-genre,
+.my-country, .my-course,
 .on-platforms{
     display: flex;
     align-items: center; /* Align items vertically in the center */
 }
 
 .spirit-animal,
-.my-country, .favourite-genre,
+.my-country, .my-course,
 .on-platforms{
     margin-top: 0;      /* Remove the top margin */
     height:34px;
@@ -511,7 +550,7 @@ body{
 
 
 .date_joined h4, .spirit-animal h4,
-.my-country h4, .favourite-genre h4{
+.my-country h4, .my-course h4{
     margin-right: 10px; /* Add spacing between h4 and p */
 }
 
@@ -524,6 +563,9 @@ body{
 
 .profile-reviews {
     flex: 2; /* Takes up 2 parts out of 4 (1 for left-column + 2 for profile-reviews + 1 for right-column) */
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-color: #f5f5f5;
 }
 
 /* Flex container */
@@ -542,26 +584,58 @@ body{
 }
 
 
-.profile-reviews{
-    border: 2px solid #333;
-}
-
-.profile-reviews {
-    flex: 2; /* Takes up 2 parts out of 4 (1 for left-column + 2 for profile-reviews + 1 for right-column) */
-}
 
 .profile-wishlist{
     background-color: hotpink;
 }
 
-.profile-heart{
-    width:70px;
-    height:70px;
-}
 
 .profile-logout{
     margin-top:10px;
+    background-color: mediumpurple;
 }
+
+.profile-logout {
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: all 0.5s;
+}
+
+.profile-logout:before {
+    content: '<<';
+    position: absolute;
+    opacity: 0;
+    top: 14px;
+    left: -20px;
+    transition: 0.5s;
+}
+
+.profile-logout:hover {
+    padding-left: 24px;
+    padding-right: 8px;
+}
+
+.profile-logout:hover:before {
+    opacity: 1;
+    left: 10px;
+}
+
+.user-profile-picture,
+.about-me,
+.profile-wishlist {
+    position: relative;  /* Added for absolute positioning of :before */
+    transition: transform .3s ease;
+}
+
+.user-profile-picture:hover,
+.about-me:hover,
+.profile-wishlist:hover {
+    transform: translateY(-10px);
+}
+
+
 
 .sort-container {
     font-family: Arial, sans-serif;
@@ -728,4 +802,6 @@ body{
 .review p:last-child {
     color: #666666;  /* Soft gray for the comment */
 }
+
+
 
