@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import random
 
 class Publisher:
     def __init__(self, publisher_name: str):
@@ -253,6 +253,9 @@ class Game:
 
 
 class User:
+    all_colors = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Cyan", "Grey"]
+    all_animals = ["Tiger 🐯", "Penguin 🐧", "Frog 🐸", "Fox 🦊", "Lion 🦁",
+                   "Panda 🐼", "Koala 🐨", "Dragon 🐲", "Unicorn 🦄"]
     def __init__(self, username: str, password: str):
         if not isinstance(username, str) or username.strip() == "":
             raise ValueError('Username cannot be empty or non-string!')
@@ -266,6 +269,20 @@ class User:
 
         self.__reviews: list[Review] = []
         self.__favourite_games: list[Game] = []
+        self.__date_joined = datetime.now()
+        self.__animal_list = User.all_animals.copy()
+        self.animal = self.__assign_animal()
+
+    def __assign_animal(self):
+        chosen_animal = random.choice(self.__animal_list)
+        return chosen_animal
+    @property
+    def spirit_animal(self):
+        return self.animal
+
+    @property
+    def date_joined(self):
+        return self.__date_joined.strftime('%Y-%m-%d %H:%M:%S')
 
     @property
     def username_unique(self):
