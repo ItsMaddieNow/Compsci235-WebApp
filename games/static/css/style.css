@@ -748,3 +748,64 @@ body{
     color: #666666;  /* Soft gray for the comment */
 }
 
+/* profile.css */
+
+.profile-reviews {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-reviews h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.sort-container label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.sort-container select {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+.review-stars {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.fas.fa-star {
+    color: #ffc107; /* Gold color for filled stars */
+}
+
+.fas.fa-star:not(.checked) {
+    color: #e0e0e0; /* Gray color for empty stars */
+}
+
+
