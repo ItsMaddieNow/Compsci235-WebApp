@@ -8,5 +8,6 @@ def get_username(username, repo: AbstractRepository):
 
 
 def get_reviews_by_user(user_id, repo: AbstractRepository):
-    reviews = repo.get_review(user_id)
+    reviews = repo.get_reviews_by_user(user_id)
     return reviews
+

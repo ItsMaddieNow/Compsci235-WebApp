@@ -420,62 +420,34 @@ body{
     box-sizing: border-box;
 }
 
-
-.user-profile-intro {
-    border: 2px solid transparent;
-    max-width: 97%;  /* Set the maximum width to 80% of its parent */
-    margin-left: auto;  /* Center it horizontally */
-    border-radius:8px;
-    margin-right: auto;
-    background-color: dodgerblue;
-    color: white;
-}
-.user-profile-picture{
-    background-color: #f5f5f5;
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center;    /* Center children horizontally */
-    justify-content: center; /* Center children vertically */
-}
-
-
 .user-profile-picture,
 .profile-wishlist,
 .profile-logout{
-    border: 2px solid transparent;
+    border: 2px solid #000000;
+    display: flex;
+    flex-direction: column;
     width:310px;
     max-width:310px;
+    justify-content: center;
+    align-items: center;
     border-radius: 8px;
     height:270px;
 }
 .about-me {
     padding: 20px;
-    background-color: #f9f9f9;
-    border: 2px solid transparent;
+    background-color: #f5f5f5;
+    border: 2px solid #000000;
     display: flex;
     flex-direction: column;
     width: 310px;
     max-width: 310px;
+    /* Remove justify-content: center; if you don't want the items to be centered vertically. */
+    /* justify-content: center; */
+    /* Remove or adjust this to align items to the left */
+    /* align-items: center; */
     border-radius: 8px;
+    /* Adjust or remove the fixed height as needed */
     height: 270px;
-}
-
-.profile-wishlist h2 , .profile-logout h2{
-    display: block;
-    margin-top: 60px;
-    height: 30px;
-    color: white;
-}
-
-.profile-logout{
-    background-color: mediumpurple;
-}
-
-
-.profile-heart, .profile-logout-icon {
-    display: block;
-    margin: 10px auto;
-    margin-top: 10px;
 }
 
 
@@ -487,19 +459,12 @@ body{
 
 
 .about-me {
-    padding: 20px;
+    padding: 20px;           /* Give some spacing inside the container */
+    background-color: #f5f5f5; /* Light grey background */
 }
 
 .about-me{
     margin-top: 10px;
-}
-
-.user-profile-picture,
-.about-me,
-.profile-reviews,
-.profile-wishlist,
-.profile-logout{
-    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
 }
 
 
@@ -508,34 +473,34 @@ body{
 
 
 .date_joined, .spirit-animal,
-.my-country, .my-course,
+.my-country, .favourite-genre,
 .on-platforms{
     display: flex;
-    align-items: center;
+    align-items: center; /* Align items vertically in the center */
 }
 
 .spirit-animal,
-.my-country, .my-course,
+.my-country, .favourite-genre,
 .on-platforms{
-    margin-top: 0;
-    height:38px;
+    margin-top: 0;      /* Remove the top margin */
+    height:34px;
 }
 
 
 .on-platforms {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: center; /* This ensures vertical alignment if items wrap to the next line */
 }
 
 .on-platforms h4 {
-    margin-right: 10px;
+    margin-right: 10px; /* Space between the heading and the tags */
 }
 
 .profile-tag {
     background-color: dodgerblue;
     color: white;
-    border-radius: 12px;
+    border-radius: 12px; /* Slight adjustment for the reduced size */
     padding: 3px 8px; /* Reduced padding for a smaller tag */
     font-size: 12px; /* Reduced font size for the content inside the tag */
     margin: 0 5px 5px 0;
@@ -546,32 +511,26 @@ body{
 
 
 .date_joined h4, .spirit-animal h4,
-.my-country h4, .my-course h4{
-    margin-right: 10px;
+.my-country h4, .favourite-genre h4{
+    margin-right: 10px; /* Add spacing between h4 and p */
 }
 
-.about-me h3{
-    text-align: center;
-    margin-top: 0;
+.about-me h3 {
+    text-align: center; /* Center the h3 */
+    margin-top: 0;      /* Remove the top margin */
     margin-bottom: 10px;
 }
 
 
 .profile-reviews {
-    flex: 2;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    flex: 2; /* Takes up 2 parts out of 4 (1 for left-column + 2 for profile-reviews + 1 for right-column) */
 }
 
-.profile-reviews h2{
-    color: dodgerblue;
-}
-
-
+/* Flex container */
 .full-profile-container {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: space-between; /* This will put space between the columns */
+    width: 100%; /* It will take up the full width of its parent */
 }
 
 /* Column settings */
@@ -583,6 +542,9 @@ body{
 }
 
 
+.profile-reviews{
+    border: 2px solid #333;
+}
 
 .profile-reviews {
     flex: 2; /* Takes up 2 parts out of 4 (1 for left-column + 2 for profile-reviews + 1 for right-column) */
@@ -592,11 +554,9 @@ body{
     background-color: hotpink;
 }
 
-
-
-.profile-heart, .profile-logout-icon{
-    width:130px;
-    height:130px;
+.profile-heart{
+    width:70px;
+    height:70px;
 }
 
 .profile-logout{
@@ -614,6 +574,7 @@ body{
 .sort-container select {
     padding: 5px 10px;
     font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 4px;
     appearance: none;
     cursor: pointer;
@@ -766,45 +727,5 @@ body{
 /* Review comment */
 .review p:last-child {
     color: #666666;  /* Soft gray for the comment */
-}
-
-.profile-logout {
-    text-align: center;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: all 0.5s;
-}
-
-.profile-logout:before {
-    content: '<<';
-    position: absolute;
-    opacity: 0;
-    top: 14px;
-    left: -20px;
-    transition: 0.5s;
-}
-
-.profile-logout:hover {
-    padding-left: 24px;
-    padding-right: 8px;
-}
-
-.profile-logout:hover:before {
-    opacity: 1;
-    left: 10px;
-}
-
-
-.user-profile-picture,
-.about-me,
-.profile-wishlist{
-    transition: transform .3s ease;
-}
-
-.user-profile-picture:hover,
-.about-me:hover,
-.profile-wishlist:hover{
-    transform: translateY(-10px);
 }
 

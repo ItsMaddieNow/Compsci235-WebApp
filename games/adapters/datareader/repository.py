@@ -96,11 +96,7 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_review(self, review_id: int) -> Review:
-        """ Returns the Review with the given review_id from the repository.
-
-        If there is no Review with the given review_id, this method returns None.
-        """
+    def get_reviews_by_user(self, user_id) -> list:
         raise NotImplementedError
 
     @abc.abstractmethod

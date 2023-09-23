@@ -15,6 +15,7 @@ description_blueprint = Blueprint(
 
 
 @description_blueprint.route("/description/<game_id>", methods=['GET', 'POST'])
+@login_required
 def description(game_id):
     game = get_game(int(game_id), repo.repo_instance)
     form = ReviewForm()
