@@ -46,6 +46,7 @@ def write_review(game_id):
 
 
 @reviews_blueprint.route('/game_description/<int:game_id>')
+@login_required
 def game_reviews(game_id):
     game = repo.repo_instance.get_game(game_id)
     if not game:
