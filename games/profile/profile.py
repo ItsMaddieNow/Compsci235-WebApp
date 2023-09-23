@@ -4,6 +4,7 @@ import games.profile.services as services
 import games.adapters.datareader.repository as repo
 from ..domainmodel.model import Game, User
 from games.auth.authentication import login_required
+from games.reviews import services as review_services
 
 profile_blueprint = Blueprint(
     'profile_bp', __name__
@@ -14,6 +15,7 @@ profile_blueprint = Blueprint(
 @login_required
 def profile():
     username = session.get('username')  # Get the username from the session
+    reviews = services.get_reviews_by_user(username, repo.repo_instance)
     if not username:
         flash('Please log in to view your profile.', 'warning')
         return redirect(url_for('auth_bp.login'))
@@ -25,5 +27,6 @@ def profile():
 
     return render_template(
         'profile.html',
-        user=user
+        user=user,
+        reviews=reviews
     )

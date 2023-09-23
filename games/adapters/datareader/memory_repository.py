@@ -139,10 +139,12 @@ class MemoryRepository(AbstractRepository):
 
         return True
 
-    def get_review(self, review_index: int) -> Review | None:
-        if 0 <= review_index < len(self.__reviews):
-            return self.__reviews[review_index]
-        return None
+    def get_reviews_by_user(self, user_id) -> list:
+        user_reviews = []
+        for review in self.__reviews:
+            if user_id == review.user.username_unique:
+                user_reviews.append(review)
+        return user_reviews
 
     def get_reviews_for_game(self, g) -> list:
         for review in self.__reviews:
