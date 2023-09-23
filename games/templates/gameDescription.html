@@ -7,17 +7,24 @@
         <p><span class="headyThing">Price:</span> ${{ game.price }}</p>
         <p><span class="headyThing">Publisher:</span> {{ game.publisher.publisher_name }}</p>
         <p><span class="headyThing">Release Date:</span> {{ game.release_date }}</p>
-
-        <p><span class="headyThing">User Rating Average:</span>
-            {% for _ in range(1, 6) %}
-                {% if _ <= average_rating|round %}
-                    <i class="fas fa-star checked"></i>
-                {% else %}
-                    <i class="fas fa-star"></i>
-                {% endif %}
-            {% endfor %}
-            ({{ average_rating|round(1) }})
+{#    temp#}
+        <p><span class="headyThing">User Rating Average:</span><i class="fas fa-star checked"></i>
+            <i class="fas fa-star checked"></i>
+            <i class="fas fa-star checked"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            (2)
         </p>
+{#        <p><span class="headyThing">User Rating Average:</span>#}
+{#            {% for _ in range(1, 6) %}#}
+{#                {% if _ <= average_rating|round %}#}
+{#                    <i class="fas fa-star checked"></i>#}
+{#                {% else %}#}
+{#                    <i class="fas fa-star"></i>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+{#            ({{ average_rating|round(1) }})#}
+{#        </p>#}
 
         <div class="tags" style="width: calc(800px - 460px);">
             <div class="headyThing">Genres:</div>
@@ -27,15 +34,7 @@
                 </a>
             {% endfor %}
         </div>
-
-        <div class="check">
-            {% for wishlist_id in wishlist_game_ids %}
-                <p>{{ wishlist_id }}</p>
-            {% endfor %}
-        </div>
-
         <p><span class="headyThing">About:</span> {{ game.description }}</p>
-
         <div class="tags">
             <div class="headyThing">Platforms:</div>
             {% if game.supports_linux %} <div class="tag">🐧 Linux</div> {% endif %}
@@ -43,55 +42,58 @@
             {% if game.supports_mac %} <div class="tag">🍎 Mac</div> {% endif %}
         </div>
 
-        <div class="user-features">
-            {% if game.game_id not in wishlist_game_ids %}
-                <form action="{{ url_for('wishlist_bp.wishlist_add') }}" method="post">
-                    <input type="hidden" name="game_id" value="{{ game.game_id }}">
-                    <button type="submit" class="add-to-wishlist">
-                        <img src="{{ url_for('static', filename='heart-icon.svg') }}" class="heartIcon" alt="heart-icon">
-                        Add to Wishlist
-                    </button>
-                </form>
-            {% else %}
-                <form action="{{ url_for('wishlist_bp.wishlist_remove') }}" method="post">
-                    <input type="hidden" name="game_id" value="{{ game.game_id }}">
-                    <button type="submit" class="remove-from-wishlist">
-                        <img src="{{ url_for('static', filename='heartbreak-icon.svg') }}" class="heartbreakIcon" alt="heartbreak-icon">
-                        Remove from Wishlist
-                    </button>
-                </form>
-            {% endif %}
-        </div>
-
-        <div class="reviews-section">
-        <h3>Critic Reviews:</h3>
-        <h3>User Reviews({{ reviews|length }}):</h3>
-        <a href="{{ url_for('reviews_bp.write_review', game_id=game.game_id) }}">Write a Review</a>
-
-        {% if reviews %}
-            {% for review in reviews %}
-                <div class="review">
-                    <p><strong>{{ review.user.username_for_ui }}</strong></p>
-
-                    <!-- Display rating as stars -->
-                    <div class="star-rating read-only">
-                        {% for star_num in range(5, 0, -1) %}
-                            {% if review.rating >= star_num %}
-                                <label class="active">&#9733;</label>
-                            {% else %}
-                                <label>&#9733;</label>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-
-                    <p>{{ review.comment }}</p>
-                </div>
-            {% endfor %}
+{#        <div class="user-features">#}
+{#            <form action="{{ url_for('wishlist_bp.wishlist_add') }}" method="post">#}
+{#                <input type="hidden" name="game_id" value="{{ game.game_id }}">#}
+{#                <button type="submit" class="add-to-wishlist">#}
+{#                    <img src="{{ url_for('static', filename='heart-icon.svg') }}" class="heartIcon" alt="heart-icon">#}
+{#                    <p>Add to Wishlist</p>#}
+{#                </button>#}
+{#            </form>#}
+{##}
+{#        </div>#}
+    <div class="user-features">
+        {% if game.game_id not in wishlist_game_ids %}
+            <form action="{{ url_for('wishlist_bp.wishlist_add') }}" method="post">
+        <input type="hidden" name="game_id" value="{{ game.game_id }}">
+        <button type="submit" class="add-to-wishlist">
+            <img src="{{ url_for('static', filename='heart-icon.svg') }}" class="heartIcon" alt="heart-icon">
+                Add to Wishlist
+        </button>
         {% else %}
-            <p>No reviews available.</p>
+            <form action="{{ url_for('wishlist_bp.wishlist_remove') }}" method="post">
+        <input type="hidden" name="game_id" value="{{ game.game_id }}">
+        <button type="submit" class="remove-from-wishlist">
+            <img src="{{ url_for('static', filename='heartbreak-icon.svg') }}" class="heartbreakIcon" alt="heartbreak-icon">
+                Remove from Wishlist
+        </button>
         {% endif %}
+    </form>
+{#    <form action="{{ url_for('auth_bp.login') }}" method="post">#}
+{#        <input type="hidden" name="review_id" value="{{ game.game_id }}">#}
+{#        <button type="submit" class="write-review">#}
+{#            <img src="{{ url_for('static', filename='review-icon.svg') }}" class="reviewIcon" alt="review-icon">#}
+{#            <p>Write a review</p>#}
+{#        </button>#}
+{#    </form>#}
+</div>
+
+    <div class="reviews-section">
+                <h3>Critic Reviews:</h3>
+                <h3>User Reviews:</h3>
+                <a href="{{ url_for('reviews_bp.write_review', game_id=game.game_id) }}">Write a Review</a>
+                {% if reviews %}
+                {% for review in reviews %}
+                    <div class="review">
+                        <p><strong>{{ review.user.username_for_ui }}</strong></p>
+                        <p>Rating: {{ review.rating }}/5</p>
+                        <p>{{ review.comment }}</p>
+                    </div>
+                {% endfor %}
+                {% else %}
+                    <p>No reviews available.</p>
+                {% endif %}
+            </div>
     </div>
 
-
-    </div>
 {% endblock %}
