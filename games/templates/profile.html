@@ -59,15 +59,23 @@
     </div>
 
     <div class="right-column">
-        <div class="profile-wishlist">
-            <h2>View My Wishlist
+    <div class="profile-wishlist">
+        <h2>
+            <a href="{{ url_for('wishlist_bp.wishlist') }}">
+                View My Wishlist
                 <img src="{{ url_for('static', filename='heart-icon.svg') }}" alt="profileHeart" class="profile-heart">
-            </h2>
-        </div>
-        <div class="profile-logout">
-            <h2>Log Out</h2>
-        </div>
+            </a>
+        </h2>
     </div>
+    <div class="profile-logout">
+        <h2>
+            <a href="{{ url_for('auth_bp.login') }}">
+                Log Out
+            </a>
+        </h2>
+    </div>
+</div>
+
 
     </div>
 {% endblock %}
