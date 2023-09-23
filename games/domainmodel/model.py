@@ -253,9 +253,11 @@ class Game:
 
 
 class User:
-    all_colors = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Cyan", "Grey"]
     all_animals = ["Tiger 🐯", "Penguin 🐧", "Frog 🐸", "Fox 🦊", "Lion 🦁",
                    "Panda 🐼", "Koala 🐨", "Dragon 🐲", "Unicorn 🦄"]
+    my_platforms = [["🐧 Linux"], ["🍎 Mac"], ["🪟 Windows"],
+                    ["🐧 Linux", "🍎 Mac" ], ["🍎 Mac", "🪟 Windows"],
+                    ["🐧 Linux", "🍎 Mac" ,"🪟 Windows"]]
     def __init__(self, username: str, password: str):
         if not isinstance(username, str) or username.strip() == "":
             raise ValueError('Username cannot be empty or non-string!')
@@ -272,6 +274,16 @@ class User:
         self.__date_joined = datetime.now()
         self.__animal_list = User.all_animals.copy()
         self.animal = self.__assign_animal()
+        self.__platform_list = User.my_platforms.copy()
+        self.__platforms = self.__assign_platforms()
+
+    def __assign_platforms(self):
+        chosen_platforms = random.choice(self.__platform_list)
+        return chosen_platforms
+
+    @property
+    def platforms(self):
+        return self.__platforms
 
     def __assign_animal(self):
         chosen_animal = random.choice(self.__animal_list)
