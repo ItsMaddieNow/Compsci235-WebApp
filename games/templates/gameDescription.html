@@ -65,7 +65,7 @@
 
         <div class="reviews-section">
         <h3>Critic Reviews:</h3>
-        <h3>User Reviews:</h3>
+        <h3>User Reviews({{ reviews|length }}):</h3>
         <a href="{{ url_for('reviews_bp.write_review', game_id=game.game_id) }}">Write a Review</a>
 
         {% if reviews %}
