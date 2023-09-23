@@ -3,7 +3,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 450px;
-    height: 300px;
+    height: 330px;
     margin-top:60px;
 
 }
@@ -110,14 +110,16 @@
 .sign-up p{
     text-align: center;
 }
-.sign-up u{
-    margin-left:198px;
-}
 
 .intro p{
     text-align: center;
 }
 
-.sign-in-link{
+.sign-in-link,
+.sign-up-link{
     text-align: center;
+}
+
+.white-link{
+    color:white;
 }
