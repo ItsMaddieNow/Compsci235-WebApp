@@ -104,6 +104,10 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def get_reviews_for_game(self, game):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def add_wishlist(self, wishlist: Wishlist):
         """ Adds a Wishlist to the repository. """
         raise NotImplementedError

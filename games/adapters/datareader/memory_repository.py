@@ -119,15 +119,42 @@ class MemoryRepository(AbstractRepository):
 
     # Review Methods
     def add_review(self, review: Review) -> bool:
+        if not isinstance(review, Review):
+            raise RepositoryException('Invalid review object.')
+
+        user = review.user
+        game = review.game
+
+        # Check if the review is already in the user's review list for the game in question
+        if any(r for r in user.reviews if r.game == game):
+            raise RepositoryException('User has already reviewed this game.')
+
+        # Add the review to the user's reviews list
+        user.add_review(review)
+        game.reviews.append(review)
+
+        # Add the game to the main repository's list of reviews so __reviews has all the games w reviews.
         if review not in self.__reviews:
             self.__reviews.append(review)
-            return True
-        return False
+
+        return True
 
     def get_review(self, review_index: int) -> Review | None:
         if 0 <= review_index < len(self.__reviews):
             return self.__reviews[review_index]
         return None
+
+    def get_reviews_for_game(self, g) -> list:
+        for review in self.__reviews:
+            if review.game.game_id == g.game_id:
+                print(review.game.reviews)
+                return review.game.reviews
+        return []
+        # for review in self.__reviews:
+        #     print(f"Review game ID: {review.game.game_id}, Target game ID: {game.game_id}")
+        # print(self.__reviews)
+        #
+        # return [review for review in self.__reviews if review.game == game]
 
     # Wishlist Methods
     def add_wishlist(self, wishlist: Wishlist) -> bool:
