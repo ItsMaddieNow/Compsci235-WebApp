@@ -7,24 +7,21 @@
         <p><span class="headyThing">Price:</span> ${{ game.price }}</p>
         <p><span class="headyThing">Publisher:</span> {{ game.publisher.publisher_name }}</p>
         <p><span class="headyThing">Release Date:</span> {{ game.release_date }}</p>
-{#    temp#}
-        <p><span class="headyThing">User Rating Average:</span><i class="fas fa-star checked"></i>
-            <i class="fas fa-star checked"></i>
-            <i class="fas fa-star checked"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            (2)
+
+       <p><span class="headyThing">User Rating Average:</span>
+           {% if average_rating is defined and average_rating is not none %}
+               {% for _ in range(1, 6) %}
+                   {% if _ <= average_rating|round %}
+                      <i class="fas fa-star checked"></i>
+                   {% else %}
+                       <i class="fas fa-star"></i>
+                   {% endif %}
+               {% endfor %}
+               ({{ average_rating|round(1) }})
+           {% else %}
+               <span>No average rating available</span>
+           {% endif %}
         </p>
-{#        <p><span class="headyThing">User Rating Average:</span>#}
-{#            {% for _ in range(1, 6) %}#}
-{#                {% if _ <= average_rating|round %}#}
-{#                    <i class="fas fa-star checked"></i>#}
-{#                {% else %}#}
-{#                    <i class="fas fa-star"></i>#}
-{#                {% endif %}#}
-{#            {% endfor %}#}
-{#            ({{ average_rating|round(1) }})#}
-{#        </p>#}
 
         <div class="tags" style="width: calc(800px - 460px);">
             <div class="headyThing">Genres:</div>
