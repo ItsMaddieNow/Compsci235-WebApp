@@ -93,3 +93,43 @@ def test_logout(client, auth):
     with client:
         auth.logout()
         assert "username" not in session
+
+
+def test_description(client, auth):
+    auth.register()
+    auth.login()
+
+    response = client.get("/description/2010700")
+    assert response.status_code == 200
+
+
+def test_reviews(client, auth, in_memory_repo):
+    auth.register()
+    auth.login()
+
+    print(in_memory_repo.get_game(2010700))
+
+    response = client.get("write_review/2010700")
+    assert response.status_code == 200
+    response = client.post(
+        "write_review/2010700",
+        data={"rating": 5, "comment": "Test Comment String"},
+        follow_redirects=True)
+    assert len(response.history) == 1
+    assert response.request.path == '/game_description/2010700'
+
+
+def test_review_invalid_input(client, auth):
+    auth.register()
+    auth.login()
+
+    response = client.post("/write_review/2010700", data={
+        "rating": 5,
+        "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae tellus orci. Vestibulum "
+                   "faucibus molestie sodales. Donec semper felis quis magna ultrices fringilla. Duis consequat "
+                   "ornare nisi, tempor gravida nunc molestie at. Duis fermentum dapibus erat, sit amet feugiat lorem "
+                   "accumsan ac. Vivamus enim eros, efficitur in convallis sed, tempor auctor turpis. Etiam id "
+                   "euismod arcu, quis ultrices lacus. Cras mattis eleifend eros nec auctor. Nunc consectetur enim "
+                   "diam, ac lacinia velit eleifend quis amet. "})
+
+    assert b"Your Review Should Be Between 1 to 500 Characters" in response.data
