@@ -24,6 +24,11 @@
         <div class="form-group">
             <label for="comment">Comment:</label>
             <textarea name="comment" id="comment" rows="5" required></textarea>
+            {% if form.comment.errors is not none %}
+                {% for error in form.comment.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            {% endif %}
         </div>
 
         <input type="submit" value="Submit Review">

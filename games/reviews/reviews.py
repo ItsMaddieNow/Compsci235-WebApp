@@ -11,7 +11,9 @@ reviews_blueprint = Blueprint('reviews_bp', __name__)
 
 class ReviewForm(FlaskForm):
     rating = IntegerField('Rating (0-5)', [validators.InputRequired(), validators.NumberRange(min=0, max=5)])
-    comment = TextAreaField('Comment', [validators.Length(min=0, max=500)])
+    comment = TextAreaField('Comment', [
+        validators.Length(min=0, max=500, message="Your Review Should Be Between 1 to 500 Characters")
+    ])
     submit = SubmitField('Submit')
 
 
