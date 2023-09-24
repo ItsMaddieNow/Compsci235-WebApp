@@ -39,16 +39,6 @@
             {% if game.supports_mac %} <div class="tag">🍎 Mac</div> {% endif %}
         </div>
 
-{#        <div class="user-features">#}
-{#            <form action="{{ url_for('wishlist_bp.wishlist_add') }}" method="post">#}
-{#                <input type="hidden" name="game_id" value="{{ game.game_id }}">#}
-{#                <button type="submit" class="add-to-wishlist">#}
-{#                    <img src="{{ url_for('static', filename='heart-icon.svg') }}" class="heartIcon" alt="heart-icon">#}
-{#                    <p>Add to Wishlist</p>#}
-{#                </button>#}
-{#            </form>#}
-{##}
-{#        </div>#}
     <div class="user-features">
         {% if game.game_id not in wishlist_game_ids %}
             <form action="{{ url_for('wishlist_bp.wishlist_add') }}" method="post">
@@ -66,29 +56,29 @@
         </button>
         {% endif %}
     </form>
-{#    <form action="{{ url_for('auth_bp.login') }}" method="post">#}
-{#        <input type="hidden" name="review_id" value="{{ game.game_id }}">#}
-{#        <button type="submit" class="write-review">#}
-{#            <img src="{{ url_for('static', filename='review-icon.svg') }}" class="reviewIcon" alt="review-icon">#}
-{#            <p>Write a review</p>#}
-{#        </button>#}
-{#    </form>#}
-</div>
+    </div>
 
     <div class="reviews-section">
-                <h3>Critic Reviews:</h3>
-                <h3>User Reviews:</h3>
+                <h3>All User Reviews:</h3>
                 <a href="{{ url_for('reviews_bp.write_review', game_id=game.game_id) }}">Write a Review</a>
                 {% if reviews %}
                 {% for review in reviews %}
                     <div class="review">
                         <p><strong>{{ review.user.username_for_ui }}</strong></p>
-                        <p>Rating: {{ review.rating }}/5</p>
+                         <div class="star-rating read-only">
+                        {% for star_num in range(5, 0, -1) %}
+                            {% if review.rating >= star_num %}
+                                <label class="active">&#9733;</label>
+                            {% else %}
+                                <label>&#9733;</label>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                         <p>{{ review.comment }}</p>
                     </div>
                 {% endfor %}
                 {% else %}
-                    <p>No reviews available.</p>
+                    <p>No reviews yet!</p>
                 {% endif %}
             </div>
     </div>
