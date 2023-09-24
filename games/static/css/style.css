@@ -658,7 +658,39 @@ body{
     display: inline-block;
 }
 
+.profile-reviews li {
+    word-wrap: break-word;  /* This will break long words if necessary */
+    overflow-wrap: break-word;  /* More modern version of word-wrap */
+}
 
+.profile-reviews {
+    flex: 2;
+    overflow: hidden;  /* Adding this to prevent overflow */
+}
+
+.profile-reviews ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.reviews_container{
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.profile-reviews {
+    height: 550px;
+    max-height: 550px;
+    overflow-y: auto; /* Adding this to prevent vertical overflow and for scrollability */
+}
+
+
+.individual-reviews{
+    border: 2px solid transparent;
+    margin-top: 6px;
+}
 
 .sort-container select {
     padding: 5px 10px;
