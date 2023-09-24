@@ -80,7 +80,7 @@ def test_get_add_get_reviews(in_memory_repo):
         "Gay <3"
     ))
 
-    review = in_memory_repo.get_reviews_for_game(in_memory_repo.get_game(1)[0])
+    review = in_memory_repo.get_reviews_for_game(in_memory_repo.get_game(1))[0]
     assert str(review) == "Review(User: <User dj_hyperfresh>, Game: <Game 1, Splatoon 3>, Rating: 5, Comment: Gay <3)"
 
 
