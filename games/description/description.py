@@ -20,11 +20,17 @@ def description(game_id):
     game = get_game(int(game_id), repo.repo_instance)
     form = ReviewForm()
 
-    if form.validate_on_submit():
-        return redirect(url_for('description_bp.description'))  # Redirect after handling form submission
+    reviews = review_services.get_reviews_for_gamez(game, repo.repo_instance)  # Fetch reviews for the game
+    average_rating = review_services.calculate_average_rating(game, repo.repo_instance)  # Calculate average rating
     user_id = session["username"]
     wishlist_games = services.get_user_wishlist(user_id, repo.repo_instance)
     wishlist_game_ids = [game.game_id for game in wishlist_games]
-    return render_template('gameDescription.html', game=game, form=form,
-                           wishlist_game_ids=wishlist_game_ids)
+    if form.validate_on_submit():
+        return redirect(url_for('description_bp.description'))  # Redirect after handling form submission
 
+    return render_template('gameDescription.html',
+                           game=game,
+                           form=form,
+                           reviews=reviews,
+                           average_rating=average_rating,
+                           wishlist_game_ids=wishlist_game_ids)
