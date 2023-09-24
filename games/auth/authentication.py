@@ -16,14 +16,12 @@ auth_blueprint = Blueprint(
 
 @auth_blueprint.route('/register', methods=["GET", "POST"])
 def register():
-    print("register")
     form = RegistrationForm()
     username_not_unique = None
     print(form.errors)
     if form.validate_on_submit():
         try:
             services.new_user(form.username.data, form.password.data, repo.repo_instance)
-            print("redirecting")
             return redirect(url_for('auth_bp.login'))
         except services.NonUniqueUsernameException:
             username_not_unique = "This Username Is Already Taken"
