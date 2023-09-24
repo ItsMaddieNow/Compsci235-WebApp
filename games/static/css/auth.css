@@ -36,7 +36,8 @@
     background: transparent;
     border: none;
     width: 60%;                   /* Adjust as needed to make the input fields wider */
-    margin: 0 auto;
+    margin: 0;
+    width: 100%;
     display: block;
     outline: none;
     transition: border-color 0.3s ease;
@@ -65,11 +66,14 @@
     width: 60%;
     margin: 0 auto 15px auto;
 }
+div.username, div.password {
+    flex-shrink: 10;
+    min-width: 0;
+}
 
 .input-icon {
     width: 30px;
     height: auto;
-    margin-right: 10px;
 }
 
 
