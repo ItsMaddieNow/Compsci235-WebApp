@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 <div class="wishlist-h2">
-    <h2>My Wishlist</h2>
+    <h2>{{ session["username"] }}'s Wishlist</h2>
 </div>
 {% if wishlist_games %}
     <ul>
