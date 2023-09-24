@@ -19,7 +19,6 @@ def register():
     print("register")
     form = RegistrationForm()
     username_not_unique = None
-    print(f"is submitted: {form.is_submitted()} passes validation: {form.validate()}")
     print(form.errors)
     if form.validate_on_submit():
         try:
