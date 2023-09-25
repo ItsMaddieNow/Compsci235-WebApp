@@ -54,8 +54,8 @@ def game_reviews(game_id):
     if not game:
         return redirect(url_for('home_bp.home'))
 
-    reviews = services.get_reviews_for_gamez(game, repo.repo_instance)
-    average_rating = services.calculate_average_rating(game, repo.repo_instance)
+    reviews = services.get_reviews_for_game(game_id, repo.repo_instance)
+    average_rating = services.calculate_average_rating(game_id, repo.repo_instance)
     print(reviews)
     return render_template('gameDescription.html', game=game, reviews=reviews, average_rating=average_rating)
 

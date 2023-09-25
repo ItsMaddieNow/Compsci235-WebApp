@@ -100,7 +100,7 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get_reviews_for_game(self, game):
+    def get_reviews_for_game(self, game_id):
         raise NotImplementedError
 
     @abc.abstractmethod

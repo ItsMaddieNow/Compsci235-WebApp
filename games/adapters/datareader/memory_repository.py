@@ -146,9 +146,9 @@ class MemoryRepository(AbstractRepository):
                 user_reviews.append(review)
         return user_reviews
 
-    def get_reviews_for_game(self, g) -> list:
+    def get_reviews_for_game(self, game_id) -> list:
         for review in self.__reviews:
-            if review.game.game_id == g.game_id:
+            if review.game.game_id == game_id:
                 print(review.game.reviews)
                 return review.game.reviews
         return []
