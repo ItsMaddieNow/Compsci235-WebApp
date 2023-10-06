@@ -51,6 +51,12 @@ class AlchemyRepository(AbstractRepository):
             scm.session.add(publisher)
             scm.commit()
 
+    def add_multiple_publishers(self, publishers: List):
+        with self.session_context_manager as scm:
+            for publisher in publishers:
+                scm.session.add(publisher)
+            scm.commit()
+
     def get_publisher(self, publisher_name: str) -> Publisher:
         publisher = None
         try:
@@ -68,6 +74,11 @@ class AlchemyRepository(AbstractRepository):
             except IntegrityError:
                 raise RepositoryException(f'Genre with name {genre.genre_name} already exists.')
 
+    def add_multiple_genres(self, genres: List):
+        with self.session_context_manager as scm:
+            for genre in genres:
+                scm.session.add(genre)
+            scm.commit()
 
     def get_genre(self, genre_name: str) -> Genre:
         genre = None
@@ -106,6 +117,12 @@ class AlchemyRepository(AbstractRepository):
     def add_game(self, game: Game):
         with self.session_context_manager as scm:
             scm.session.add(game)
+            scm.commit()
+
+    def add_multiple_games(self, games: List):
+        with self.session_context_manager as scm:
+            for game in games:
+                scm.session.add(game)
             scm.commit()
 
     def get_game(self, game_id: int) -> Game:

@@ -8,8 +8,8 @@ class GameFileCSVReader:
     def __init__(self, filename):
         self.__filename = filename
         self.__dataset_of_games = []
-        self.__dataset_of_publishers = set()
-        self.__dataset_of_genres = set()
+        self.__dataset_of_publishers = dict()
+        self.__dataset_of_genres = dict()
 
     def read_csv_file(self):
         if not os.path.exists(self.__filename):
@@ -31,14 +31,21 @@ class GameFileCSVReader:
                     game.supports_mac = True if row["Mac"] == "TRUE" else False
 
 
-                    publisher = Publisher(row["Publishers"])
-                    self.__dataset_of_publishers.add(publisher)
+                    publisher_name = row["Publishers"]
+                    if publisher_name in self.__dataset_of_publishers:
+                        publisher = self.dataset_of_publishers[publisher_name]
+                    else:
+                        publisher = Publisher(publisher_name)
+                        self.dataset_of_publishers[publisher_name] = publisher
                     game.publisher = publisher
 
                     genre_names = row["Genres"].split(",")
                     for genre_name in genre_names:
-                        genre = Genre(genre_name.strip())
-                        self.__dataset_of_genres.add(genre)
+                        if genre_name in self.__dataset_of_genres:
+                            genre = self.__dataset_of_genres[genre_name]
+                        else:
+                            genre = Genre(genre_name.strip())
+                            self.__dataset_of_genres[genre_name] = genre
                         game.add_genre(genre)
 
                     self.__dataset_of_games.append(game)

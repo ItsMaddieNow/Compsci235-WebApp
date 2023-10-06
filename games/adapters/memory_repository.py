@@ -32,6 +32,15 @@ class MemoryRepository(AbstractRepository):
             return True
         raise RepositoryException(f'Publisher with name {publisher.publisher_name} already exists.')
 
+    def add_multiple_publishers(self, publishers: List):
+        for publisher in publishers:
+            if publisher.publisher_name in self.__publishers:
+                raise RepositoryException(f'Publisher with name {publisher.publisher_name} already exists.')
+        for publisher in publishers:
+            self.__publishers[publisher.publisher_name] = publisher
+
+
+
     def get_publisher(self, publisher_name: str) -> Publisher:
         return self.__publishers.get(publisher_name)
 
@@ -41,6 +50,16 @@ class MemoryRepository(AbstractRepository):
             self.__genres[genre.genre_name] = genre
             return True
         raise RepositoryException(f'Genre with name {genre.genre_name} already exists.')
+
+    def add_multiple_genres(self, genres: List):
+        for genre in genres:
+            if genre in self.__genres:
+                raise RepositoryException(f'Genre with name {genre.genre_name} already exists.')
+        for genre in genres:
+            self.__genres[genre.genre_name] = genre
+
+
+
 
     def get_genre(self, genre_name: str) -> Genre:
         return self.__genres.get(genre_name)
@@ -64,6 +83,13 @@ class MemoryRepository(AbstractRepository):
             self.__games[game.game_id] = game
             return True
         raise RepositoryException(f'Game with ID {game.game_id} already exists.')
+
+    def add_multiple_games(self, games: List):
+        for game in games:
+            if game.game_id in self.__games:
+                raise RepositoryException(f'Game with ID {game.game_id} already exists.')
+        for game in games:
+            self.__games[game.game_id] = game
 
     def get_game(self, game_id: int) -> Game:
         return self.__games.get(game_id)

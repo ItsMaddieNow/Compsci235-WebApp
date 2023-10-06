@@ -44,7 +44,7 @@ game_table = Table(
     Column('linux', Boolean),
     Column('windows', Boolean),
     Column('mac', Boolean),
-    Column('publisher', ForeignKey('publishers.name'))
+    Column('publisher_name', ForeignKey('publishers.name'))
 )
 
 genre_table = Table(
@@ -95,7 +95,8 @@ def map_to_tables():
         '_Game__supports_linux': game_table.c.linux,
         '_Game__supports_windows': game_table.c.windows,
         '_Game__supports_mac': game_table.c.mac,
-        '_Game__genres': relationship(model.Genre, secondary=game_genre_table, backref="_Genre__games")
+        '_Game__genres': relationship(model.Genre, secondary=game_genre_table, backref="_Genre__games"),
+        '_Game__publisher': relationship(model.Publisher)
     })
 
     mapper(model.Genre, genre_table, properties={

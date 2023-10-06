@@ -18,6 +18,13 @@ class AbstractRepository(abc.ABC):
         """ Adds a Publisher to the repository. """
         raise NotImplementedError
 
+
+    @abc.abstractmethod
+    def add_multiple_publishers(self, publishers: List):
+        """ Adds a Publisher to the repository. """
+        raise NotImplementedError
+
+
     @abc.abstractmethod
     def get_publisher(self, publisher_name: str) -> Publisher:
         """ Returns the Publisher with the given publisher_name from the repository.
@@ -28,6 +35,11 @@ class AbstractRepository(abc.ABC):
 
     @abc.abstractmethod
     def add_genre(self, genre: Genre):
+        """ Adds a Genre to the repository. """
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def add_multiple_genres(self, genres: List):
         """ Adds a Genre to the repository. """
         raise NotImplementedError
 
@@ -52,8 +64,14 @@ class AbstractRepository(abc.ABC):
     def get_game_amount_by_genre(self, genre_name):
         """Returns length of games of a specified Genre"""
         raise  NotImplementedError
+
     @abc.abstractmethod
     def add_game(self, game: Game):
+        """ Adds a Game to the repository. """
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def add_multiple_games(self, games: List):
         """ Adds a Game to the repository. """
         raise NotImplementedError
 
