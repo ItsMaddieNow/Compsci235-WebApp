@@ -1,7 +1,6 @@
 from typing import List, Any
 from games.domainmodel.model import Publisher, Genre, Game, User, Review, Wishlist
 from .repository import AbstractRepository, RepositoryException
-from .csvdatareader import GameFileCSVReader
 
 
 def get_game_title(game):
@@ -25,18 +24,6 @@ class MemoryRepository(AbstractRepository):
         self.__users = {}
         self.__reviews = []
         self.__wishlists = {}
-
-    def populate_data_from_file(self, file_path):
-        reader = GameFileCSVReader(file_path)
-        reader.read_csv_file()
-        for genre in reader.dataset_of_genres:
-            self.__genres[genre.genre_name] = genre
-        for game in reader.dataset_of_games:
-            self.__games[game.game_id] = game
-            for genre in game.genres:
-                self.__genres[genre.genre_name].add_game(game)
-        for publisher in reader.dataset_of_publishers:
-            self.__publishers[publisher.publisher_name] = publisher
 
     # Publisher Methods
     def add_publisher(self, publisher: Publisher) -> bool:

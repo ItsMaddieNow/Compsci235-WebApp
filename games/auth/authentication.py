@@ -3,12 +3,11 @@ from functools import wraps
 from flask import Blueprint, render_template, url_for, redirect, session
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.csrf.session import SessionCSRF
 from wtforms.validators import DataRequired, Length, ValidationError
 from password_validator import PasswordValidator
 
 from games.auth import services
-import games.adapters.datareader.repository as repo
+import games.adapters.repository as repo
 
 auth_blueprint = Blueprint(
     'auth_bp', __name__, url_prefix='/auth')

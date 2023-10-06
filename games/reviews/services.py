@@ -1,4 +1,4 @@
-from games.adapters.datareader.repository import RepositoryException, AbstractRepository
+from games.adapters.repository import RepositoryException, AbstractRepository
 from games.domainmodel.model import User, Game, Review
 
 

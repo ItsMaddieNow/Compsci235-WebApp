@@ -1,7 +1,6 @@
-from flask import Blueprint, session, request, render_template, jsonify, flash, url_for, redirect
-import math
+from flask import Blueprint, session, request, render_template, flash, url_for, redirect
 import games.wishlist.services as services
-import games.adapters.datareader.repository as repo
+import games.adapters.repository as repo
 from games.auth.authentication import login_required
 
 wishlist_blueprint = Blueprint(

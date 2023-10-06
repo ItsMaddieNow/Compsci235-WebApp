@@ -1,12 +1,9 @@
-from flask import Blueprint, render_template, redirect, url_for
-import games.adapters.datareader.repository as repo
+import games.adapters.repository as repo
 from games.description.services import get_game
 from games.reviews.reviews import ReviewForm
 from games.reviews import services as review_services
-from games.domainmodel.model import Game, Genre
 from games.auth.authentication import login_required
-from flask import Blueprint, session, request, render_template, jsonify, flash, url_for, redirect
-import math
+from flask import Blueprint, session, render_template, url_for, redirect
 import games.wishlist.services as services
 
 description_blueprint = Blueprint(

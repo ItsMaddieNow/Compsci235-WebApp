@@ -1,8 +1,7 @@
 from flask import Blueprint, request, render_template
 import math
 import games.gamelibrary.services as services
-import games.adapters.datareader.repository as repo
-from ..domainmodel.model import Game
+import games.adapters.repository as repo
 
 REPO = repo.repo_instance
 GAMES_PER_PAGE = 12  # 12 is a nice number divisible by 1, 2, 3 and 4, so it works nicely with Flexbox

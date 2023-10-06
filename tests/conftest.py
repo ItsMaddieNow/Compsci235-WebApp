@@ -2,7 +2,7 @@ import pytest
 from flask import Flask
 
 from games import create_app
-from games.adapters.datareader import memory_repository
+from games.adapters import memory_repository
 
 
 @pytest.fixture

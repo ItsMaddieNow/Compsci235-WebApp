@@ -1,5 +1,4 @@
-from games.domainmodel.model import Game
-from games.adapters.datareader.repository import AbstractRepository
+from games.adapters.repository import AbstractRepository
 
 
 def get_games(page, per_page, key, repo: AbstractRepository):

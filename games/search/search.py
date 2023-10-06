@@ -1,5 +1,5 @@
-from flask import Blueprint, request, render_template, redirect
-import games.adapters.datareader.repository as repo
+from flask import Blueprint, request, render_template
+import games.adapters.repository as repo
 from games.search.services import search_games
 
 REPO = repo.repo_instance

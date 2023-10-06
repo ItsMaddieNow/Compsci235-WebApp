@@ -1,8 +1,6 @@
 from flask import Blueprint, request, render_template, session, url_for, redirect, flash
-import math
 import games.profile.services as services
-import games.adapters.datareader.repository as repo
-from ..domainmodel.model import Game, User
+import games.adapters.repository as repo
 from games.auth.authentication import login_required
 
 profile_blueprint = Blueprint(

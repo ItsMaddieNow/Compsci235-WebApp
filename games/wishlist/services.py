@@ -1,4 +1,4 @@
-from games.adapters.datareader.repository import AbstractRepository
+from games.adapters.repository import AbstractRepository
 from games.domainmodel.model import Wishlist
 
 

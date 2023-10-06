@@ -1,4 +1,4 @@
-from games.adapters.datareader.repository import AbstractRepository
+from games.adapters.repository import AbstractRepository
 
 
 def get_game(game_id, repo: AbstractRepository):

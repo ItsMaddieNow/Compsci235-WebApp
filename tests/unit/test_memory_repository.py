@@ -1,6 +1,6 @@
 import pytest
 
-from games.adapters.datareader.repository import RepositoryException
+from games.adapters.repository import RepositoryException
 from games.domainmodel.model import Game, User, Review, Wishlist
 
 

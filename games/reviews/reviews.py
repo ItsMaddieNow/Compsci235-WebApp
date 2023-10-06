@@ -1,9 +1,8 @@
 from flask import Blueprint, request, render_template, session, url_for, redirect, flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, IntegerField, validators, SubmitField
+from wtforms import TextAreaField, IntegerField, validators, SubmitField
 import games.reviews.services as services
-import games.adapters.datareader.repository as repo
-from ..domainmodel.model import Game, Review
+import games.adapters.repository as repo
 from games.auth.authentication import login_required
 
 reviews_blueprint = Blueprint('reviews_bp', __name__)

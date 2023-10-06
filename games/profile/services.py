@@ -1,5 +1,4 @@
-from games.adapters.datareader.repository import AbstractRepository
-from games.domainmodel.model import Wishlist, Review, User
+from games.adapters.repository import AbstractRepository
 
 
 def get_username(username, repo: AbstractRepository):

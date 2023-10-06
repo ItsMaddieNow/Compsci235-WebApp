@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from games.adapters.datareader.repository import AbstractRepository, RepositoryException
+from games.adapters.repository import AbstractRepository
 from games.domainmodel.model import User
 
 

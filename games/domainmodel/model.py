@@ -1,6 +1,7 @@
 from datetime import datetime
 import random
 
+
 class Publisher:
     def __init__(self, publisher_name: str):
         if publisher_name == "" or type(publisher_name) is not str:
@@ -34,7 +35,6 @@ class Publisher:
 
     def __hash__(self):
         return hash(self.__publisher_name)
-
 
 
 class Genre:
@@ -256,8 +256,9 @@ class User:
     all_animals = ["Tiger 🐯", "Penguin 🐧", "Frog 🐸", "Fox 🦊", "Lion 🦁",
                    "Panda 🐼", "Koala 🐨", "Dragon 🐲", "Unicorn 🦄"]
     my_platforms = [["🐧 Linux"], ["🍎 Mac"], ["🪟 Windows"],
-                    ["🐧 Linux", "🍎 Mac" ], ["🍎 Mac", "🪟 Windows"],
-                    ["🐧 Linux", "🍎 Mac" ,"🪟 Windows"]]
+                    ["🐧 Linux", "🍎 Mac"], ["🍎 Mac", "🪟 Windows"],
+                    ["🐧 Linux", "🍎 Mac", "🪟 Windows"]]
+
     def __init__(self, username: str, password: str):
         if not isinstance(username, str) or username.strip() == "":
             raise ValueError('Username cannot be empty or non-string!')
@@ -288,6 +289,7 @@ class User:
     def __assign_animal(self):
         chosen_animal = random.choice(self.__animal_list)
         return chosen_animal
+
     @property
     def spirit_animal(self):
         return self.animal
