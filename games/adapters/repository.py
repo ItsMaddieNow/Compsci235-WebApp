@@ -11,6 +11,11 @@ class RepositoryException(Exception):
         pass
 
 
+class KeyException(Exception):
+    def __init__(self, message=None):
+        pass
+
+
 class AbstractRepository(abc.ABC):
 
     @abc.abstractmethod

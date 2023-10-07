@@ -6,7 +6,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from sqlalchemy.orm import scoped_session
 
-from games.adapters.repository import AbstractRepository, RepositoryException
+from games.adapters.repository import AbstractRepository, RepositoryException, KeyException
 from games.domainmodel.model import Publisher, User, Review, Genre, Game, Wishlist
 
 
@@ -136,7 +136,17 @@ class AlchemyRepository(AbstractRepository):
         return game
 
     def search_games_by_key(self, term: str, key) -> List[Game]:
-        pass
+        match key:
+            case 'description':
+                query_filter = Game.description
+            case 'publisher':
+                query_filter = Game.publisher
+            case _:
+                raise KeyException("Invalid Key")
+
+        games = self.session_context_manager.session.query(Genre).filter(query_filter.like(f"%{term}%")).all()
+
+        return games
 
     def game_amount(self):
         return self.session_context_manager.session.query(Game).count()
