@@ -211,8 +211,3 @@ class MemoryRepository(AbstractRepository):
             wishlist.list_of_games().remove(game)
             return True
         return False
-
-
-def populate(file_path, repo: MemoryRepository):
-    # initialise, read, populate
-    repo.populate_data_from_file(file_path)

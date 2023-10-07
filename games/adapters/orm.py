@@ -37,7 +37,7 @@ game_table = Table(
     Column('id', Integer, primary_key=True),
     Column('title', String(255), nullable=False),
     Column('price', Integer),
-    Column('release_date', String(50)),
+    Column('release_date', Date),
     Column('description', String(2048)),
     Column('image_url', String(255)),
     Column('website_url', String(255)),

@@ -137,17 +137,18 @@ class Game:
         else:
             raise ValueError("Price must be a positive number!")
 
+
     @property
     def release_date(self):
-        return self.__release_date
+        return self.__release_date.strftime("%b %d, %Y")
+
 
     @release_date.setter
     def release_date(self, release_date: str):
         if isinstance(release_date, str):
             try:
                 # Check if the release_date string is in the correct date format (e.g., "Oct 21, 2008")
-                datetime.strptime(release_date, "%b %d, %Y")
-                self.__release_date = release_date
+                self.__release_date = datetime.strptime(release_date, "%b %d, %Y")
             except ValueError:
                 raise ValueError("Release date must be in 'Oct 21, 2008' format!")
         else:

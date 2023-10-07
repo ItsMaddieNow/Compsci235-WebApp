@@ -17,7 +17,7 @@ def description(game_id):
     game = get_game(int(game_id), repo.repo_instance)
     form = ReviewForm()
 
-    reviews = review_services.get_reviews_for_gamez(game, repo.repo_instance)  # Fetch reviews for the game
+    reviews = review_services.get_reviews_for_game(game, repo.repo_instance)  # Fetch reviews for the game
     average_rating = review_services.calculate_average_rating(game, repo.repo_instance)  # Calculate average rating
     user_id = session["username"]
     wishlist_games = services.get_user_wishlist(user_id, repo.repo_instance)

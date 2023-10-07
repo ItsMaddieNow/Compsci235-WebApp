@@ -1,7 +1,7 @@
 from sqlite3 import IntegrityError
 from typing import List
 
-from sqlalchemy import exists
+from sqlalchemy import exists, desc, func
 from sqlalchemy.orm.exc import NoResultFound
 
 from sqlalchemy.orm import scoped_session
@@ -128,23 +128,25 @@ class AlchemyRepository(AbstractRepository):
     def get_game(self, game_id: int) -> Game:
         game = None
         try:
-            game = self.session_context_manager.session.query(Genre).filter(
-                Game.game_id == game_id
+            game = self.session_context_manager.session.query(Game).filter(
+                Game._Game__game_id == game_id
             ).one()
         except NoResultFound:
-            pass
+            print(f'Game {game_id} was not found')
         return game
 
     def search_games_by_key(self, term: str, key) -> List[Game]:
         match key:
+            case 'title':
+                query_filter = Game._Game__game_title
             case 'description':
-                query_filter = Game.description
+                query_filter = Game._Game__description
             case 'publisher':
-                query_filter = Game.publisher
+                query_filter = Game._Game__publisher
             case _:
-                raise KeyException("Invalid Key")
+                raise KeyException(f"Invalid Key: {key}")
 
-        games = self.session_context_manager.session.query(Genre).filter(query_filter.like(f"%{term}%")).all()
+        games = self.session_context_manager.session.query(Game).filter(query_filter.like(f"%{term}%")).all()
 
         return games
 
@@ -152,7 +154,20 @@ class AlchemyRepository(AbstractRepository):
         return self.session_context_manager.session.query(Game).count()
 
     def get_games_by_key(self, start_index, end_index, key):
-        pass
+        print(f"get games by {key}")
+        match key:
+            case "Newest":
+                sort_key = desc(Game._Game__release_date)
+            case "Oldest":
+                sort_key = Game._Game__release_date
+            case _:
+                raise KeyException("Invalid Key")
+        return (self.session_context_manager.session
+                .query(Game)
+                .orderby(Game._Game__release_date)
+                .limit(end_index-start_index)
+                .offset(start_index)
+                .all())
 
     def add_user(self, user: User):
         with self.session_context_manager as scm:
@@ -163,7 +178,7 @@ class AlchemyRepository(AbstractRepository):
         user = None
         try:
             user = self.session_context_manager.session.query(User).filter(
-                User.username_unique == username
+                func.lower(User._User__username) == func.lower(username)
             ).one()
         except NoResultFound:
             pass
@@ -175,22 +190,47 @@ class AlchemyRepository(AbstractRepository):
             scm.commit()
 
     def get_reviews_by_user(self, user_id) -> list:
-        pass
+        return (self.session_context_manager.session
+                .query(Review)
+                .join(User)
+                .filter(func.lower(user_id) == func.lower(User._User__username))
+                .all())
 
     def get_reviews_for_game(self, game_id):
-        pass
+        return (self.session_context_manager.session
+                .query(Review)
+                .join(Game)
+                .filter(game_id == Game.game_id)
+                .all())
 
     def add_wishlist(self, wishlist: Wishlist):
-        pass
+        with self.session_context_manager as scm:
+            scm.session.add(wishlist)
+            scm.commit()
 
     def get_wishlist(self, user: User) -> Wishlist:
-        pass
+        wishlist = None
+        try:
+            wishlist = (self.session_context_manager.session
+                        .query(Wishlist)
+                        .join(User)
+                        .filter(func.lower(User._User__username) == func.lower(user._User__username))
+                        .one())
+        except NoResultFound:
+            pass
+        return wishlist
 
     def add_game_to_wishlist(self, user: User, game: Game) -> bool:
-        pass
+        with self.session_context_manager as scm:
+            self.get_wishlist(user).add_game(game)
+            self.session_context_manager.commit()
+            return True
 
     def update_wishlist(self, user: User, new_wishlist: Wishlist) -> bool:
         pass
 
     def remove_game_from_wishlist(self, user: User, game: Game):
-        pass
+        with self.session_context_manager as scm:
+            self.get_wishlist(user).remove_game(game)
+            self.session_context_manager.commit()
+            return True
