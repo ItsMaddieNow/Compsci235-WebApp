@@ -154,7 +154,6 @@ class AlchemyRepository(AbstractRepository):
         return self.session_context_manager.session.query(Game).count()
 
     def get_games_by_key(self, start_index, end_index, key):
-        print(f"get games by {key}")
         match key:
             case "Newest":
                 sort_key = desc(Game._Game__release_date)
@@ -164,9 +163,9 @@ class AlchemyRepository(AbstractRepository):
                 raise KeyException("Invalid Key")
         return (self.session_context_manager.session
                 .query(Game)
-                .orderby(Game._Game__release_date)
-                .limit(end_index-start_index)
+                .order_by(sort_key)
                 .offset(start_index)
+                .limit(end_index - start_index)
                 .all())
 
     def add_user(self, user: User):
