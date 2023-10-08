@@ -20,11 +20,17 @@ favourite_games_table = Table(
     Column('game_id', ForeignKey('games.id'))
 )
 
-wishlist_table = Table(
-    'wishlist', metadata,
+wishlist_game_table = Table(
+    'wishlist_games', metadata,
     Column('id', Integer, primary_key=True, autoincrement=True),
-    Column('user_id', ForeignKey('users.id')),
+    Column('wishlist_id', ForeignKey('wishlists.id')),
     Column('game_id', ForeignKey('games.id'))
+)
+
+wishlist_table = Table(
+    'wishlists', metadata,
+    Column('id', Integer, primary_key=True, autoincrement=True),
+    Column('user_id', ForeignKey('users.id'))
 )
 
 publisher_table = Table(
@@ -109,5 +115,5 @@ def map_to_tables():
 
     mapper(model.Wishlist, wishlist_table, properties={
         '_Wishlist__user': relationship(model.User),
-        '_Wishlist__list_of_games': relationship(model.Game)
+        '_Wishlist__list_of_games': relationship(model.Game, secondary=wishlist_game_table)
     })

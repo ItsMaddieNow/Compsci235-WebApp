@@ -226,7 +226,9 @@ class AlchemyRepository(AbstractRepository):
             return True
 
     def update_wishlist(self, user: User, new_wishlist: Wishlist) -> bool:
-        pass
+        with self.session_context_manager as scm:
+            scm.session.merge(new_wishlist)
+            return True
 
     def remove_game_from_wishlist(self, user: User, game: Game):
         with self.session_context_manager as scm:
