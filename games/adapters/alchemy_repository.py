@@ -199,7 +199,7 @@ class AlchemyRepository(AbstractRepository):
         return (self.session_context_manager.session
                 .query(Review)
                 .join(Game)
-                .filter(game_id == Game.game_id)
+                .filter(game_id == Game._Game__game_id)
                 .all())
 
     def add_wishlist(self, wishlist: Wishlist):
