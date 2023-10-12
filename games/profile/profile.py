@@ -25,6 +25,7 @@ def profile():
     if sort_option == "newest":
         reviews.reverse()
 
+    print(user.spirit_animal)
     return render_template(
         'profile.html',
         user=user,

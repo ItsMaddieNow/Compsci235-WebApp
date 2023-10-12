@@ -137,11 +137,9 @@ class Game:
         else:
             raise ValueError("Price must be a positive number!")
 
-
     @property
     def release_date(self):
         return self.__release_date.strftime("%b %d, %Y")
-
 
     @release_date.setter
     def release_date(self, release_date: str):
@@ -253,12 +251,16 @@ class Game:
         return self.__game_id < other.game_id
 
 
+all_animals = ["Tiger 🐯", "Penguin 🐧", "Frog 🐸", "Fox 🦊", "Lion 🦁",
+               "Panda 🐼", "Koala 🐨", "Dragon 🐲", "Unicorn 🦄"]
+
+
+def select_and_pop(selection_list: list):
+    position = random.randrange(len(selection_list))
+    return selection_list.pop(position)
+
+
 class User:
-    all_animals = ["Tiger 🐯", "Penguin 🐧", "Frog 🐸", "Fox 🦊", "Lion 🦁",
-                   "Panda 🐼", "Koala 🐨", "Dragon 🐲", "Unicorn 🦄"]
-    my_platforms = [["🐧 Linux"], ["🍎 Mac"], ["🪟 Windows"],
-                    ["🐧 Linux", "🍎 Mac"], ["🍎 Mac", "🪟 Windows"],
-                    ["🐧 Linux", "🍎 Mac", "🪟 Windows"]]
 
     def __init__(self, username: str, password: str):
         if not isinstance(username, str) or username.strip() == "":
@@ -274,26 +276,50 @@ class User:
         self.__reviews: list[Review] = []
         self.__favourite_games: list[Game] = []
         self.__date_joined = datetime.now()
-        self.__animal_list = User.all_animals.copy()
-        self.animal = self.__assign_animal()
-        self.__platform_list = User.my_platforms.copy()
-        self.__platforms = self.__assign_platforms()
-
-    def __assign_platforms(self):
-        chosen_platforms = random.choice(self.__platform_list)
-        return chosen_platforms
+        self.__animal_id = random.randrange(len(all_animals))
+        selection_list = [True, random.getrandbits(1), random.getrandbits(1)]
+        self.__linux = select_and_pop(selection_list)
+        self.__mac = select_and_pop(selection_list)
+        self.__windows = select_and_pop(selection_list)
 
     @property
-    def platforms(self):
-        return self.__platforms
+    def supports_windows(self):
+        return self.__windows
 
-    def __assign_animal(self):
-        chosen_animal = random.choice(self.__animal_list)
-        return chosen_animal
+    @supports_windows.setter
+    def supports_windows(self, value):
+        self.__windows = value
+
+    @property
+    def supports_mac(self):
+        return self.__mac
+
+    @supports_mac.setter
+    def supports_mac(self, value):
+        self.__mac = value
+
+    @property
+    def supports_linux(self):
+        return self.__linux
+
+    @supports_linux.setter
+    def supports_linux(self, value):
+        self.__linux = value
+
+    def get_fancy_platforms(self):
+        user_platforms = []
+        if self.__linux:
+            user_platforms.append("🐧 Linux")
+        if self.__mac:
+            user_platforms.append("🍎 Mac")
+        if self.__windows:
+            user_platforms.append("🪟 Windows")
+        return user_platforms
 
     @property
     def spirit_animal(self):
-        return self.animal
+        print(self.__animal_id)
+        return all_animals[self.__animal_id]
 
     @property
     def date_joined(self):
