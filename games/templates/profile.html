@@ -32,7 +32,7 @@
             </div>
             <div class="on-platforms">
                 <h4>On Platforms:</h4>
-                {% for platform in user.get_fancy_platforms() %}
+                {% for platform in user.platforms %}
                     <div class="profile-tag">{{ platform }}</div>
                 {% endfor %}
             </div>

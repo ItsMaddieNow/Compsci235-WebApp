@@ -10,11 +10,7 @@ user_table = Table(
     Column('id', Integer, primary_key=True, autoincrement=True),
     Column('username', String(255, collation='NOCASE'), unique=True, nullable=False),
     Column('password', String(255), nullable=False),
-    Column("date_joined", Date, nullable=False),
-    Column('animal_id', Integer),
-    Column('linux', Boolean),
-    Column('mac', Boolean),
-    Column('windows', Boolean)
+    Column("date_joined", Date, nullable=False)
 )
 
 favourite_games_table = Table(
@@ -84,11 +80,7 @@ def map_to_tables():
         '_User__username': user_table.c.username,
         '_User__password': user_table.c.password,
         '_User__date_joined': user_table.c.date_joined,
-        '_User__favourite_games': relationship(model.Game, secondary=favourite_games_table),
-        '_User__animal_id': user_table.c.animal_id,
-        '_User__linux': user_table.c.linux,
-        '_User__windows': user_table.c.windows,
-        '_User__mac': user_table.c.mac
+        '_User__favourite_games': relationship(model.Game, secondary=favourite_games_table)
     })
 
     mapper(model.Review, review_table, properties={
