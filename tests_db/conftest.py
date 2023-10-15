@@ -16,7 +16,7 @@ def get_project_root() -> Path:
 TEST_DATA_PATH_DATABASE_FULL = get_project_root() / "games" / "adapters" / "data" / "games.csv"
 
 TEST_DATABASE_URI_IN_MEMORY = 'sqlite://'
-TEST_DATABASE_URI_FILE = 'sqlite:///games.db'
+TEST_DATABASE_URI_FILE = 'sqlite:///:memory:'
 
 
 @pytest.fixture
