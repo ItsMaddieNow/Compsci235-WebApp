@@ -62,23 +62,27 @@
                 <h3>All User Reviews:</h3>
                 <a href="{{ url_for('reviews_bp.write_review', game_id=game.game_id) }}">Write a Review</a>
                 {% if reviews %}
-                {% for review in reviews %}
-                    <div class="review">
-                        <p><strong>{{ review.user.username_for_ui }}</strong></p>
-                         <div class="star-rating read-only">
-                        {% for star_num in range(5, 0, -1) %}
-                            {% if review.rating >= star_num %}
-                                <label class="active">&#9733;</label>
-                            {% else %}
-                                <label>&#9733;</label>
-                            {% endif %}
-                        {% endfor %}
+                    <p>{{ reviews }}</p>
+                    {% for review in reviews %}
+                        <div class="review">
+                            <p><strong>{{ review.user.username_for_ui }}</strong></p>
+                             <div class="star-rating read-only">
+                            {% for star_num in range(5, 0, -1) %}
+                                {% if review.rating >= star_num %}
+                                    <label class="active">&#9733;</label>
+                                {% else %}
+                                    <label>&#9733;</label>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                            <p>{{ review.comment }}</p>
+                        </div>
+                    {% endfor %}
+                {% elif reviews is none%}
+                    <div>
+                        <p>No reviews yet!</p>
                     </div>
-                        <p>{{ review.comment }}</p>
-                    </div>
-                {% endfor %}
-                {% else %}
-                    <p>No reviews yet!</p>
+
                 {% endif %}
             </div>
     </div>

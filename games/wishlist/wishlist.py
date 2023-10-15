@@ -2,6 +2,7 @@ from flask import Blueprint, session, request, render_template, flash, url_for, 
 import games.wishlist.services as services
 import games.adapters.repository as repo
 from games.auth.authentication import login_required
+from games.adapters import alchemy_repository as db
 
 wishlist_blueprint = Blueprint(
     'wishlist_bp', __name__

@@ -48,8 +48,6 @@ def create_app(test_config=None):
             database_mode = True
             repo_populate.populate_data_from_file(repo.repo_instance, data_path)
             print("Completed Populating Database")
-
-
         else:
             map_to_tables()
 
