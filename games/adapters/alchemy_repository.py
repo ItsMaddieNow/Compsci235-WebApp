@@ -221,7 +221,11 @@ class AlchemyRepository(AbstractRepository):
 
     def add_game_to_wishlist(self, user: User, game: Game) -> bool:
         with self.session_context_manager as scm:
-            self.get_wishlist(user).add_game(game)
+            wishlist = self.get_wishlist(user)
+            if wishlist is None:
+                wishlist = Wishlist(user)
+                scm.session.add(wishlist)
+            wishlist.add_game(game)
             self.session_context_manager.commit()
             return True
 
