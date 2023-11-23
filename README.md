@@ -1,11 +1,9 @@
 # COMPSCI 235 Starter Repository for the Games WebApp Assignments
-This is a starter repository for the games webapp assignments of CompSci 235 in Semester 2, 2023.
-
 ## Description
 
-This repository contains an implementation of the domain model from Assignment 1. It contains unit tests which can be run through pytest. It also contains a simple Flask application that renders content of a Game object instance from our domain model on a blank HTML page. 
+This repository is a Webapp that displays a catalog of games pulled from Steam. Users are able to create accounts which they can use to leave reviews and create wishlists. Everything is stored in a SQLite Database.
 
-From here on you can **choose if you want to use the provided domain model or your own implementation from CodeRunner assignment 1**. The domain model implementation may have to be extended, and you may also decide to remove or modify test cases as it suits you. 
+The webapp protects against CSRF attacks, stores passwords as salted hashes and ensures users use secure passwords.
 
 ## Installation
 
